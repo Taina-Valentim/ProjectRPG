@@ -1,0 +1,89 @@
+﻿@model Personagem
+
+@{
+    ViewData["Title"] = "Criar Personagem";
+}
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+    <div class="row">
+        <div class="col-12 text-center">
+                <h2 class="text-white py-2">Criar Personagem</h2>
+        </div>
+    </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <div class="border p-3">
+                <label asp-for="Nome" class="ms-2"></label>
+                <input asp-for="Nome" class="form-control border-0 shadow" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+
+                <label asp-for="Especie" class="ms-2"></label>
+                <input asp-for="Especie" class="form-control border-0 shadow" />
+                <span asp-validation-for="Especie" class="text-danger"></span>
+
+                <label asp-for="Altura" class="ms-2"></label>
+                <input asp-for="Altura" class="form-control border-0 shadow" />
+                <span asp-validation-for="Altura" class="text-danger"></span>
+
+                <label asp-for="Peso" class="ms-2"></label>
+                <input asp-for="Peso" class="form-control border-0 shadow" />
+                <span asp-validation-for="Peso" class="text-danger"></span>
+
+                <label asp-for="PvTotal" class="ms-2"></label>
+                <input asp-for="PvTotal" class="form-control border-0 shadow" />
+                <span asp-validation-for="PvTotal" class="text-danger"></span>
+
+                <label asp-for="PvAtual" class="ms-2"></label>
+                <input asp-for="PvAtual" class="form-control border-0 shadow" />
+                <span asp-validation-for="PvAtual" class="text-danger"></span>
+
+                <label asp-for="Deslocamento" class="ms-2"></label>
+                <input asp-for="Deslocamento" class="form-control border-0 shadow" />
+                <span asp-validation-for="Deslocamento" class="text-danger"></span>
+
+                <label asp-for="Infeccao" class="ms-2"></label>
+                <input asp-for="Infeccao" class="form-control border-0 shadow" />
+                <span asp-validation-for="Infeccao" class="text-danger"></span>
+
+                <label asp-for="Defesa" class="ms-2"></label>
+                <input asp-for="Defesa" class="form-control border-0 shadow" />
+                <span asp-validation-for="Defesa" class="text-danger"></span>
+
+                <label asp-for="RegeneracaoDiaria" class="ms-2"></label>
+                <input asp-for="RegeneracaoDiaria" class="form-control border-0 shadow" />
+                <span asp-validation-for="RegeneracaoDiaria" class="text-danger"></span>
+
+                <label asp-for="Saciedade" class="ms-2"></label>
+                <input asp-for="Saciedade" class="form-control border-0 shadow" />
+                <span asp-validation-for="Saciedade" class="text-danger"></span>
+
+                <label asp-for="Hidratacao" class="ms-2"></label>
+                <input asp-for="Hidratacao" class="form-control border-0 shadow" />
+                <span asp-validation-for="Hidratacao" class="text-danger"></span>
+
+                <label asp-for="Disposicao" class="ms-2"></label>
+                <input asp-for="Disposicao" class="form-control border-0 shadow" />
+                <span asp-validation-for="Disposicao" class="text-danger"></span>
+
+
+                <div class="row pt-2" style="margin-top: 25px;">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Criar Personagem</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial"/>
+    }
+}
