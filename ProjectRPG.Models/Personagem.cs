@@ -6,9 +6,9 @@ namespace ProjectRPG.Models
     {
         [Key]
         public int Id { get; set; }
-
+        
         [Required]
-        [MaxLength(150)]
+        [MaxLength(150, ErrorMessage = "O nome deve ter entre 1 e 150 caracteres")]
         public required string Nome { get; set; }
 
         [Required]
