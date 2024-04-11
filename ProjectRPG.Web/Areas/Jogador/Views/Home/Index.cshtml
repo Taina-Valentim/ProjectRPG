@@ -1,1 +1,76 @@
-﻿<h2>Index</h2>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Cadastro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+    else
+    {
+		<a asp-area="Administrador" asp-controller="Usuario" asp-action="Index">Usuario</a>
+		<ul class="listagem-pokemon">
+			<li class="cartao-pokemon">
+				<div class="informacoes">
+					<span>Armas</span>
+				</div>
+
+				<img src="/images/dashboard/arma.gif" alt="Arma" class="gif" />
+
+				<a class="tipos fogo">Adicionar</a>
+				<a class="tipos fogo">Editar</a>
+				<a class="tipos fogo">Excluir</a>
+			</li>
+
+			<li class="cartao-pokemon">
+				<div class="informacoes">
+					<span>Equipamentos</span>
+				</div>
+
+				<img src="/images/dashboard/colete.gif" alt="Colete" class="gif" />
+
+				<ul class="tipos">
+					<li class="tipo grama">Adicionar</li>
+					<li class="tipo grama">Editar</li>
+					<li class="tipo grama">Excluir</li>
+				</ul>
+			</li>
+
+			<li class="cartao-pokemon">
+				<div class="informacoes">
+					<span>Itens</span>
+				</div>
+
+				<img src="/images/dashboard/barraca.gif" alt="Barraca" class="gif" />
+
+				<ul class="tipos">
+					<li class="tipo grama">Adicionar</li>
+					<li class="tipo grama">Editar</li>
+					<li class="tipo grama">Excluir</li>
+				</ul>
+
+			</li>
+
+			<li class="cartao-pokemon">
+				<div class="informacoes">
+					<span>Personagens</span>
+				</div>
+
+				<img src="/images/dashboard/personagens.gif" alt="Personagens" class="gif" />
+
+				<ul class="tipos">
+					<li class="tipo fogo">Fogo</li>
+				</ul>
+
+				<p class="descricao">Tem preferência por coisas quentes. Quando chove, diz-se que o vapor jorra da ponta de sua cauda.</p>
+			</li>
+		</ul>
+    }
+</ul>

@@ -8,6 +8,7 @@
         public IEquipamentoRepository Equipamento { get; }
         public IItemRepository Item { get; }
         public IPersonagemRepository Personagem { get; }
+        public IRPGUserRepository RPGUser { get; }
 
         void Salvar();
     }

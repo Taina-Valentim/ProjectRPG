@@ -18,8 +18,8 @@ namespace ProjectRPG.Models
         public required string Descricao { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
-        public int Unidades { get; set; }
+        [Range (0, int.MaxValue)]
+        public int Quantidade { get; set; }
 
         public int PersonagemId { get; set; }
         [ForeignKey("PersonagemId")]

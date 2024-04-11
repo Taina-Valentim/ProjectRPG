@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ProjectRPG.Models;
 
 namespace ProjectRPG.DataAccess.Data
 {
-    public class RPGDbContext : DbContext
+    public class RPGDbContext : IdentityDbContext<IdentityUser>
     {
         public RPGDbContext(DbContextOptions<RPGDbContext> opcoes) : base(opcoes)
         { }
@@ -16,6 +18,7 @@ namespace ProjectRPG.DataAccess.Data
         public DbSet<Equipamento> Equipamentos { get; set; }
         public DbSet<Item> Itens { get; set; }
         public DbSet<Personagem> Personagens { get; set; }
+        public DbSet<RPGUser> RPGUsers { get; set; }
 
         #endregion
 

@@ -27,6 +27,9 @@ namespace ProjectRPG.Models
         [Required]
         public bool Queimado { get; set; }
 
+        [Required]
+        public bool Infectado { get; set; }
+
         public int PersonagemId { get; set; }
         [ForeignKey("PersonagemId")]
         [ValidateNever]

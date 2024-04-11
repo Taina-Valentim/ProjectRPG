@@ -9,18 +9,23 @@ namespace ProjectRPG.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public required string Nome { get; set; }
 
         [Required]
-        [Range(1, 20)]
-        public int Valor { get; set; }
+        [Range(1, 10)]
+        public int Corpo { get; set; }
 
         [Required]
-        [Range(-2, 5)]
-        public int Modificador { get; set; }
-        
+        [Range(1, 10)]
+        public int Foco { get; set; }
+
+        [Required]
+        [Range(1, 10)]
+        public int Mente { get; set; }
+
+        [Required]
+        [Range(1, 10)]
+        public int Reacao { get; set; }
+
 
         public int PersonagemId { get; set; }
         [ForeignKey("PersonagemId")]

@@ -1,3 +1,15 @@
-﻿document.getElementById('menu-toggle').addEventListener('click', function () {
-    document.getElementById('menu').classList.toggle('active');
+﻿const botaoAlterarTema = document.getElementById("botao-alterar-tema");
+const body = document.querySelector("body");
+const imagemBotaoTrocaDeTema = document.querySelector(".imagem-botao");
+
+botaoAlterarTema.addEventListener("click", () => {
+    const modoEscuroEstaAtivo = body.classList.contains("modo-escuro");
+
+    body.classList.toggle("modo-escuro");
+
+    if (modoEscuroEstaAtivo) {
+        imagemBotaoTrocaDeTema.setAttribute("src", "/images/server/sun.png");
+    } else {
+        imagemBotaoTrocaDeTema.setAttribute("src", "/images/server/moon.png");
+    }
 });

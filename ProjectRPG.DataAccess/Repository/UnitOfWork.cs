@@ -12,6 +12,7 @@ namespace ProjectRPG.DataAccess.Repository
         public IEquipamentoRepository Equipamento { get; private set; }
         public IItemRepository Item { get; private set; }
         public IPersonagemRepository Personagem { get; private set; }
+        public IRPGUserRepository RPGUser {  get; private set; }
 
 
         public UnitOfWork(RPGDbContext db)
@@ -23,6 +24,7 @@ namespace ProjectRPG.DataAccess.Repository
             Equipamento = new EquipamentoRepository(_db);
             Item = new ItemRepository(_db);
             Personagem = new PersonagemRepository(_db);
+            RPGUser = new RPGUserRepository(_db);
         }
 
         public void Salvar()

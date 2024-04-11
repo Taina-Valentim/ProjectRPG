@@ -1,0 +1,38 @@
+﻿@model List<UsuarioViewModel>
+
+<h1>Lista de Usuários</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Número de Telefone</th>
+            <th>Data de Nascimento</th>
+            <th>Perfil</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Usuario.UserName</td>
+                <td>@user.Usuario.Email</td>
+                <td>@user.Usuario.PhoneNumber</td>
+                <td>@user.Usuario.DataNascimento</td>
+                <td>@user.Role</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Usuario" asp-action="AlterarPerfil" asp-route-id="@user.Usuario.Id" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Alterar Perfil
+                        </a>
+                        <a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@user.Usuario.Id" class="btn btn-danger mx-2">
+                            <i class="bi bi-trash-fill"></i> Excluir
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

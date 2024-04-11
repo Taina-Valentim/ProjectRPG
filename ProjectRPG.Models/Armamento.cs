@@ -18,30 +18,25 @@ namespace ProjectRPG.Models
         [Display(Name = "Descrição")]
         public required string Descricao { get; set; }
 
-        [Required]
-        [Range(1, 1000)]
+        [Range(1, int.MaxValue)]
         public int Dano { get; set; }
 
-        [Range(1, 1000)]
+        [Range(1, int.MaxValue)]
         public int Alcance { get; set; }
 
+        [Display(Name = "Usa munição")]
         public bool UsaMunicao { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        [Display(Name = "Munição")]
-        public required string Municao { get; set; }
 
         [Required]
         [MaxLength(50)]
         [Display(Name = "Tipo de munição")]
         public required string TipoMunicao { get; set; }
 
-        [Range(1, 1000)]
+        [Range(1, int.MaxValue)]
         [Display(Name = "Munição máxima")]
         public int MunicaoMaxima { get; set; }
 
-        [Range(1, 1000)]
+        [Range(1, int.MaxValue)]
         [Display(Name = "Munição atual")]
         public int MunicaoAtual { get; set; }
 

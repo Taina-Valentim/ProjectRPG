@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRPG.Web", "ProjectRPG.Web.csproj", "{6D581009-8785-4661-BC18-0F8CF53CD40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectRPG.Web", "ProjectRPG.Web.csproj", "{6D581009-8785-4661-BC18-0F8CF53CD40F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRPG.DataAccess", "..\ProjectRPG.DataAccess\ProjectRPG.DataAccess.csproj", "{D8430DD0-C573-49E6-8157-FAA420D0B6C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectRPG.DataAccess", "..\ProjectRPG.DataAccess\ProjectRPG.DataAccess.csproj", "{D8430DD0-C573-49E6-8157-FAA420D0B6C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRPG.Models", "..\ProjectRPG.Models\ProjectRPG.Models.csproj", "{F0C708C1-C0E8-4F78-B4B4-17FF52E00ADC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectRPG.Models", "..\ProjectRPG.Models\ProjectRPG.Models.csproj", "{F0C708C1-C0E8-4F78-B4B4-17FF52E00ADC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRPG.Utilitarios", "..\ProjectRPG.Utilitarios\ProjectRPG.Utilitarios.csproj", "{2FA8F309-1062-4CCC-986A-DC3912357CF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{F0C708C1-C0E8-4F78-B4B4-17FF52E00ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0C708C1-C0E8-4F78-B4B4-17FF52E00ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0C708C1-C0E8-4F78-B4B4-17FF52E00ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FA8F309-1062-4CCC-986A-DC3912357CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FA8F309-1062-4CCC-986A-DC3912357CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FA8F309-1062-4CCC-986A-DC3912357CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FA8F309-1062-4CCC-986A-DC3912357CF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

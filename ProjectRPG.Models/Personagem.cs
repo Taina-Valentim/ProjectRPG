@@ -23,27 +23,21 @@ namespace ProjectRPG.Models
 
         [Required]
         [Display(Name = "PV total")]
+        [Range (0, int.MaxValue)]
         public int PvTotal { get; set; }
 
         [Required]
+        [Range (0, int.MaxValue)]
         [Display(Name = "PV atual")]
         public int PvAtual { get; set; }
 
         [Required]
+        [Range (0, int.MaxValue)]
         public int Deslocamento { get; set; }
 
         [Required]
-        [Display(Name = "Infecção")]
-        public int Infeccao { get; set; }
-
-        [Required]
-        public int Defesa { get; set; }
-
-        [Required]
-        [Display(Name = "Regeneração diária")]
-        public int RegeneracaoDiaria { get; set; }
-
-        [Display(Name = "Bem-estar")]
-        public int BemEstar { get; set; }
+        [Range (0, int.MaxValue)]
+        [Display(Name = "Evasão")]
+        public int Evasao { get; set; }
     }
 }
