@@ -12,8 +12,8 @@ using ProjectRPG.DataAccess.Data;
 namespace ProjectRPG.DataAccess.Migrations
 {
     [DbContext(typeof(RPGDbContext))]
-    [Migration("20240407170306_CriacaoIdentityTables")]
-    partial class CriacaoIdentityTables
+    [Migration("20240528000459_CriacaoBanco")]
+    partial class CriacaoBanco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,51 @@ namespace ProjectRPG.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ArmamentoPersonagem", b =>
+                {
+                    b.Property<int>("ArmamentosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonagensId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArmamentosId", "PersonagensId");
+
+                    b.HasIndex("PersonagensId");
+
+                    b.ToTable("ArmamentoPersonagem");
+                });
+
+            modelBuilder.Entity("EquipamentoPersonagem", b =>
+                {
+                    b.Property<int>("EquipamentosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonagensId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EquipamentosId", "PersonagensId");
+
+                    b.HasIndex("PersonagensId");
+
+                    b.ToTable("EquipamentoPersonagem");
+                });
+
+            modelBuilder.Entity("ItemPersonagem", b =>
+                {
+                    b.Property<int>("ItensId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonagensId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItensId", "PersonagensId");
+
+                    b.HasIndex("PersonagensId");
+
+                    b.ToTable("ItemPersonagem");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -89,6 +134,11 @@ namespace ProjectRPG.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -140,6 +190,10 @@ namespace ProjectRPG.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -170,12 +224,10 @@ namespace ProjectRPG.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -212,12 +264,10 @@ namespace ProjectRPG.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -260,9 +310,6 @@ namespace ProjectRPG.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PersonagemId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TipoMunicao")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -272,8 +319,6 @@ namespace ProjectRPG.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonagemId");
 
                     b.ToTable("Armas");
                 });
@@ -357,8 +402,8 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Equipado")
                         .HasColumnType("bit");
@@ -368,12 +413,7 @@ namespace ProjectRPG.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PersonagemId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonagemId");
 
                     b.ToTable("Equipamentos");
                 });
@@ -388,23 +428,18 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PersonagemId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonagemId");
 
                     b.ToTable("Itens");
                 });
@@ -419,16 +454,16 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.Property<string>("Aparencia")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Deslocamento")
                         .HasColumnType("int");
 
                     b.Property<string>("Especie")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Evasao")
                         .HasColumnType("int");
@@ -444,9 +479,67 @@ namespace ProjectRPG.DataAccess.Migrations
                     b.Property<int>("PvTotal")
                         .HasColumnType("int");
 
+                    b.Property<string>("Tag")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Personagens");
+                });
+
+            modelBuilder.Entity("ProjectRPG.Models.RPGUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<DateOnly>("DataNascimento")
+                        .HasColumnType("date");
+
+                    b.HasDiscriminator().HasValue("RPGUser");
+                });
+
+            modelBuilder.Entity("ArmamentoPersonagem", b =>
+                {
+                    b.HasOne("ProjectRPG.Models.Armamento", null)
+                        .WithMany()
+                        .HasForeignKey("ArmamentosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectRPG.Models.Personagem", null)
+                        .WithMany()
+                        .HasForeignKey("PersonagensId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EquipamentoPersonagem", b =>
+                {
+                    b.HasOne("ProjectRPG.Models.Equipamento", null)
+                        .WithMany()
+                        .HasForeignKey("EquipamentosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectRPG.Models.Personagem", null)
+                        .WithMany()
+                        .HasForeignKey("PersonagensId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ItemPersonagem", b =>
+                {
+                    b.HasOne("ProjectRPG.Models.Item", null)
+                        .WithMany()
+                        .HasForeignKey("ItensId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjectRPG.Models.Personagem", null)
+                        .WithMany()
+                        .HasForeignKey("PersonagensId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -500,17 +593,6 @@ namespace ProjectRPG.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectRPG.Models.Armamento", b =>
-                {
-                    b.HasOne("ProjectRPG.Models.Personagem", "Personagem")
-                        .WithMany()
-                        .HasForeignKey("PersonagemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Personagem");
-                });
-
             modelBuilder.Entity("ProjectRPG.Models.Atributo", b =>
                 {
                     b.HasOne("ProjectRPG.Models.Personagem", "Personagem")
@@ -523,28 +605,6 @@ namespace ProjectRPG.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("ProjectRPG.Models.Condicao", b =>
-                {
-                    b.HasOne("ProjectRPG.Models.Personagem", "Personagem")
-                        .WithMany()
-                        .HasForeignKey("PersonagemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Personagem");
-                });
-
-            modelBuilder.Entity("ProjectRPG.Models.Equipamento", b =>
-                {
-                    b.HasOne("ProjectRPG.Models.Personagem", "Personagem")
-                        .WithMany()
-                        .HasForeignKey("PersonagemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Personagem");
-                });
-
-            modelBuilder.Entity("ProjectRPG.Models.Item", b =>
                 {
                     b.HasOne("ProjectRPG.Models.Personagem", "Personagem")
                         .WithMany()

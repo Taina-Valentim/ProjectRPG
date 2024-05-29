@@ -13,7 +13,7 @@ namespace ProjectRPG.Models
         [MaxLength(100)]
         public required string Nome { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(5000)]
         [Display(Name = "Descrição")]
         public required string Descricao { get; set; }
 
@@ -21,9 +21,7 @@ namespace ProjectRPG.Models
         [Range (0, int.MaxValue)]
         public int Quantidade { get; set; }
 
-        public int PersonagemId { get; set; }
-        [ForeignKey("PersonagemId")]
         [ValidateNever]
-        public Personagem? Personagem { get; set; }
-    }
+		public ICollection<Personagem>? Personagens { get; set; }
+	}
 }

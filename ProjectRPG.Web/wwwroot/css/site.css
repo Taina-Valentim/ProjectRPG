@@ -44,7 +44,10 @@ body {
 
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Aldrich", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
     max-width: 100%;
     margin: 0 auto;
     background-color: #5e5b5bad;
@@ -78,6 +81,8 @@ header {
         transform: scale(1.05);
         cursor: pointer;
     }
+
+
 
 main {
     padding: 40px;
@@ -164,3 +169,65 @@ main .descricao {
     border: 3px solid #ffffff;
 }
 /* ========================== */
+
+
+
+
+.cartao-topo {
+    background-color: black;
+    color: #00C47D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 695px;
+    padding-top: 10px;
+    height: 50px;
+    border: 4px solid #00C47D;
+    overflow: hidden;
+}
+
+.cartao-conteudo {
+    background-color: black;
+    color: #00C47D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 695px;
+    height: 350px;
+    border: 4px solid #00C47D;
+    overflow: hidden;
+    margin-top: -4px;
+}
+
+.cartao-titulo {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+}
+.input {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 15px;
+    background-color: #B3ADAD;
+    color: #4E4E4E;
+}
+
+.check-lembrar {
+    text-align: center;
+}
+.botao-submit {
+    background-color: #B3ADAD;
+    color: #000000;
+    padding: 3px;
+    width: 224px;
+    font-size: 20px;
+    font-weight: 700;
+    border: 4px solid #00C47D;
+    overflow: hidden;
+    text-align: center;
+}

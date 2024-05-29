@@ -43,9 +43,7 @@ namespace ProjectRPG.Models
         [Required]
         public bool Equipado { get; set; }
 
-        public int PersonagemId { get; set; }
-        [ForeignKey("PersonagemId")]
         [ValidateNever]
-        public Personagem? Personagem { get; set; }
+        public ICollection<Personagem>? Personagens { get; set; }
     }
 }

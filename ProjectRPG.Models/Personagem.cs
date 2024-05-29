@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.Extensions.Primitives;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectRPG.Models
 {
@@ -12,12 +14,12 @@ namespace ProjectRPG.Models
         public required string Nome { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(10)]
         [Display(Name = "Espécie")]
         public required string Especie { get; set; }
 
         [Required]
-        [MaxLength(1000)]
+        [MaxLength(5000)]
         [Display(Name = "Aparência")]
         public required string Aparencia { get; set; }
 
@@ -39,5 +41,13 @@ namespace ProjectRPG.Models
         [Range (0, int.MaxValue)]
         [Display(Name = "Evasão")]
         public int Evasao { get; set; }
-    }
+        public string? Tag { get; set; }
+
+        [ValidateNever]
+		public ICollection<Armamento>? Armamentos { get; set; }
+		[ValidateNever]
+		public ICollection<Equipamento>? Equipamentos { get; set; }
+		[ValidateNever]
+		public ICollection<Item>? Itens { get; set; }
+	}
 }

@@ -6,7 +6,7 @@ using ProjectRPG.Utilitarios;
 namespace ProjectRPG.Web.Areas.Administrador.Controllers
 {
     [Area("Administrador")]
-    //[Authorize(Roles = SD.Role_Administrador)]
+    [Authorize(Roles = SD.Role_Administrador)]
     public class ArmaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
