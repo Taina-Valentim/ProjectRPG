@@ -14,19 +14,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZOOMbies</a>
-                <partial name="_LoginPartial" />
-            </div>
+    <header class="container header">
+        <div id="home">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZOOMbies</a>
+        </div>
 
+        <div id="login-e-botao">
+            <partial name="_LoginPartial" />
             <button id="botao-alterar-tema">
                 <img src="/images/server/sun.png" alt="imagem do sol" class="imagem-botao" />
             </button>
-            
-        </nav>
-        
+        </div>
     </header>
 
 

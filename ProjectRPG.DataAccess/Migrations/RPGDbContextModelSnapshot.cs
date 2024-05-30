@@ -34,7 +34,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasIndex("PersonagensId");
 
-                    b.ToTable("ArmamentoPersonagem");
+                    b.ToTable("ArmamentoPersonagem", (string)null);
                 });
 
             modelBuilder.Entity("EquipamentoPersonagem", b =>
@@ -49,7 +49,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasIndex("PersonagensId");
 
-                    b.ToTable("EquipamentoPersonagem");
+                    b.ToTable("EquipamentoPersonagem", (string)null);
                 });
 
             modelBuilder.Entity("ItemPersonagem", b =>
@@ -64,7 +64,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasIndex("PersonagensId");
 
-                    b.ToTable("ItemPersonagem");
+                    b.ToTable("ItemPersonagem", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -317,7 +317,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Armas");
+                    b.ToTable("Armas", (string)null);
                 });
 
             modelBuilder.Entity("ProjectRPG.Models.Atributo", b =>
@@ -347,7 +347,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasIndex("PersonagemId");
 
-                    b.ToTable("Atributos");
+                    b.ToTable("Atributos", (string)null);
                 });
 
             modelBuilder.Entity("ProjectRPG.Models.Condicao", b =>
@@ -386,7 +386,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasIndex("PersonagemId");
 
-                    b.ToTable("Condicoes");
+                    b.ToTable("Condicoes", (string)null);
                 });
 
             modelBuilder.Entity("ProjectRPG.Models.Equipamento", b =>
@@ -412,7 +412,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Equipamentos");
+                    b.ToTable("Equipamentos", (string)null);
                 });
 
             modelBuilder.Entity("ProjectRPG.Models.Item", b =>
@@ -438,7 +438,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Itens");
+                    b.ToTable("Itens", (string)null);
                 });
 
             modelBuilder.Entity("ProjectRPG.Models.Personagem", b =>
@@ -481,7 +481,7 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personagens");
+                    b.ToTable("Personagens", (string)null);
                 });
 
             modelBuilder.Entity("ProjectRPG.Models.RPGUser", b =>
@@ -490,6 +490,10 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.Property<DateOnly>("DataNascimento")
                         .HasColumnType("date");
+
+                    b.Property<string>("NomeUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("RPGUser");
                 });

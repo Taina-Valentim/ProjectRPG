@@ -103,16 +103,17 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "As senhas não coincidem")]
             public string ConfirmPassword { get; set; }
 
-
-            [Display(Name = "Username")]
             public string UserName { get; set; }
 
+            [Display(Name = "Nome de usuário")]
+            public required string NomeUsuario { get; set; }
 
             [Display(Name = "Data de Nascimento")]
             public DateOnly DataNascimento { get; set; }
 
-
+            
             [Display(Name = "Número de Telefone")]
+            [Phone]
             public string PhoneNumber { get; set; }
         }
 
@@ -137,9 +138,10 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.DataNascimento = Input.DataNascimento;
+                user.NomeUsuario = Input.NomeUsuario;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

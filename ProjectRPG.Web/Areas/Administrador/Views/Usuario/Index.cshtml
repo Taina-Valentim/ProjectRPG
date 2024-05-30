@@ -5,7 +5,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Username</th>
+            <th>Nome de Usuário</th>
             <th>Email</th>
             <th>Número de Telefone</th>
             <th>Data de Nascimento</th>
@@ -17,7 +17,7 @@
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.Usuario.UserName</td>
+                <td>@user.Usuario.NomeUsuario</td>
                 <td>@user.Usuario.Email</td>
                 <td>@user.Usuario.PhoneNumber</td>
                 <td>@user.Usuario.DataNascimento</td>

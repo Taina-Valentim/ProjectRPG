@@ -1,48 +1,39 @@
-/*
+/* =====    Variáveis    ===== */
+:root {
+    --verde-claro: #00C47D;
+    --verde-escuro: #008C59;
+    --background-claro: #5e5b5bad;
+    --background-escuro: #212121;
+    --card-claro-background: #DBDBDB;
+    --card-escuro-background: #000000;
+    --texto-modo-claro: #333333;
+    --texto-modo-escuro: #f5f5f5;
+}
+/* =========================== */
 
-html {
-  font-size: 18px;
+
+
+
+/* =====  Scrollbar CSS  ===== */
+*::-webkit-scrollbar {
+    width: 12px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+*::-webkit-scrollbar-track {
+    background: var(--background-claro);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+*::-webkit-scrollbar-thumb {
+    background-color: var(--verde-escuro);
+    border-radius: 10px;
+    border: 3px solid #ffffff;
 }
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 80px;
-  font-family: Arial, sans-serif;
-}
-
-.navbar-light .navbar-brand {
-    color: #E25F00;
-}
-
-.navbar-light .navbar-brand:hover {
-    color: #FF9E58;
-}
-
-.navbar-expand-sm .navbar-nav .nav-link {
-    color: #875F42;
-}
-
-.navbar-expand-sm .navbar-nav .nav-link:hover {
-    color: #BE8962;
-}
-*/
+/* =========================== */
 
 
 
+
+/* =====      Body      ===== */
 body {
     font-family: "Aldrich", sans-serif;
     font-weight: 400;
@@ -50,14 +41,31 @@ body {
 
     max-width: 100%;
     margin: 0 auto;
-    background-color: #5e5b5bad;
-    color: #333333;
+    background-color: var(--background-claro);
+    color: var(--texto-modo-claro);
 }
 
     body.modo-escuro {
-        background-color: #212121;
-        color: #f5f5f5;
+        background-color: var(--background-escuro);
+        color: var(--texto-modo-escuro);
     }
+/* =========================== */
+
+
+
+
+/* =====     Header     ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+#home {
+    order: 1;
+}
+
+#login-e-botao {
+    order: 2;
+}
 
 header {
     width: 100%;
@@ -81,9 +89,12 @@ header {
         transform: scale(1.05);
         cursor: pointer;
     }
+/* ========================== */
 
 
 
+
+/* =====      Main      ===== */
 main {
     padding: 40px;
 }
@@ -151,83 +162,225 @@ main .descricao {
     font-size: 14px;
     padding-right: 10px;
 }
-
-
-/* ===== Scrollbar CSS ===== */
-
-*::-webkit-scrollbar {
-    width: 12px;
-}
-
-*::-webkit-scrollbar-track {
-    background: #f1e9e9;
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: #582965;
-    border-radius: 10px;
-    border: 3px solid #ffffff;
-}
 /* ========================== */
 
+/****************************************************************************************/
+/****************************************************************************************/
+/****************************************************************************************/
+/****************************************************************************************/
+/****************************************************************************************/
+/****************************************************************************************/
+/****************************************************************************************/
+/****************************************************************************************/
+/****************************************************************************************/
 
 
+/* =====      Card      ===== */
 
 .cartao-topo {
-    background-color: black;
-    color: #00C47D;
+    background-color: var(--card-claro-background);
+    color: var(--verde-escuro);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 695px;
     padding-top: 10px;
     height: 50px;
-    border: 4px solid #00C47D;
+    border: 4px solid var(--verde-escuro);
     overflow: hidden;
 }
+    .cartao-topo.modo-escuro {
+        background-color: var(--card-escuro-background);
+        color: var(--verde-claro);
+        border: 4px solid var(--verde-claro);
+    }
 
 .cartao-conteudo {
-    background-color: black;
-    color: #00C47D;
+    background-color: var(--card-claro-background);
+    color: var(--texto-modo-claro);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 695px;
-    height: 350px;
-    border: 4px solid #00C47D;
+    min-height: 350px;
+    max-height: 500px;
+    border: 4px solid var(--verde-escuro);
     overflow: hidden;
     margin-top: -4px;
+    padding-top: 30px;
 }
+
+    .cartao-conteudo.modo-escuro {
+        background-color: var(--card-escuro-background);
+        color: var(--texto-modo-escuro);
+        border: 4px solid var(--verde-claro);
+    }
 
 .cartao-titulo {
     font-size: 30px;
     font-weight: 400;
 }
 
-.label {
+.label-login {
     font-size: 20px;
     font-weight: 300;
     text-align: center;
 }
-.input {
+.input-login {
     font-size: 20px;
     font-weight: 300;
-    margin: 15px;
-    background-color: #B3ADAD;
-    color: #4E4E4E;
+    margin: 10px;
 }
 
-.check-lembrar {
-    text-align: center;
+.label-cadastro {
+    font-size: 15px;
+    font-weight: 300;
+    text-align: left;
+    padding-left: 40px;
 }
+
+.input-cadastro {
+    font-size: 15px;
+    font-weight: 300;
+    margin: 10px;
+}
+
 .botao-submit {
-    background-color: #B3ADAD;
-    color: #000000;
+    background-color: var(--card-claro-background);
+    color: var(--texto-modo-claro);
     padding: 3px;
     width: 224px;
     font-size: 20px;
     font-weight: 700;
-    border: 4px solid #00C47D;
+    border: 4px solid var(--verde-escuro);
     overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+    .botao-submit:hover {
+        transform: scale(1.05);
+        transition: 0.3s all;
+        background-color: var(--verde-escuro);
+        color: var(--texto-modo-escuro);
+    }
+
+    .botao-submit:not(:hover) {
+        transition: 0.3s all;
+    }
+
+.botao-submit.modo-escuro {
+    background-color: var(--card-escuro-background);
+    color: var(--texto-modo-escuro);
+    padding: 3px;
+    width: 224px;
+    font-size: 20px;
+    font-weight: 700;
+    border: 4px solid var(--verde-claro);
+    overflow: hidden;
+}
+        .botao-submit.modo-escuro:hover {
+            transform: scale(1.05);
+            transition: 0.3s all;
+            background-color: var(--verde-claro);
+            color: var(--texto-modo-claro);
+        }
+
+    .botao-submit.modo-escuro:not(:hover) {
+        transition: 0.3s all;
+    }
+
+.container-botao {
+    display: grid;
+    place-items: center;
+}
+
+.cartao {
+    display: grid;
+    place-items: center;
+}
+
+#forgot-password, #resend-confirmation, .check-lembrar {
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 12px;
+    font-weight: 200;
+    text-align: center;
+    text-decoration: underline;
+    color: var(--verde-escuro);
+}
+
+#forgot-password.modo-escuro, #resend-confirmation.modo-escuro, .check-lembrar.modo-escuro {
+    color: var(--verde-claro);
+}
+
+.check-lembrar {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 50px;
+    text-decoration: none;
+    color: var(--texto-modo-claro);
+}
+    .check-lembrar.modo-escuro {
+        color: var(--texto-modo-escuro);
+    }
+
+    .check-lembrar input {
+        margin-right: 8px; 
+    }
+
+.form-check-input {
+    background-color: white;
+    border-color: var(--verde-escuro);
+    border-width: 2px;
+    color: white;
+}
+    .form-check-input:checked {
+        background-color: var(--verde-claro);
+        border-color: var(--verde-escuro);
+        color: white;
+    }
+    .form-check-input:not(:checked) {
+        background-color: white;
+        border-color: var(--verde-escuro);
+        border-width: 2px;
+        color: white;
+    }
+
+.opcoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#forgot-password {
+    order: 1;
+}
+
+#resend-confirmation {
+    order: 2;
+}
+
+.msg-fora-card {
+    padding-top: 35px;
     text-align: center;
 }
+    .msg-fora-card a {
+        text-decoration: none;
+        color: #008C59;
+    }
+
+        .msg-fora-card a:hover {
+            text-decoration: none;
+            color: #00794D;
+        }
+
+    .msg-fora-card.modo-escuro a {
+        text-decoration: none;
+        color: #00915C;
+    }
+
+        .msg-fora-card.modo-escuro a:hover {
+            text-decoration: none;
+            color: #00794D;
+        }
+/* ========================== */

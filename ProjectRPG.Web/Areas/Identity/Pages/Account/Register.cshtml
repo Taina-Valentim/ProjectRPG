@@ -4,7 +4,74 @@
     ViewData["Title"] = "Cadastro de Usuário";
 }
 
-<h1>@ViewData["Title"]</h1>
+@inject SignInManager<IdentityUser> SignInManager
+
+@if (!SignInManager.IsSignedIn(User))
+{
+    <div class="container cartao">
+        <div id="cartao-topo" class="cartao-topo">
+            <h2 class="cartao-titulo">CADASTRAR</h2>
+        </div>
+
+        <div id="cartao-conteudo" class="cartao-conteudo">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <label asp-for="Input.NomeUsuario" class="col-4 label-cadastro">NOME DE USUÁRIO</label>
+                <input asp-for="Input.NomeUsuario" class="col-7 input-cadastro" aria-required="true" placeholder="Nome de usuário" />
+                <span asp-validation-for="Input.NomeUsuario" class="text-danger"></span>
+
+                <label asp-for="Input.Email" class="col-4 label-cadastro">E-MAIL</label>
+                <input asp-for="Input.Email" class="col-7 input-cadastro" autocomplete="username" aria-required="true" placeholder="seuemail@exemplo.com" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                <label asp-for="Input.PhoneNumber" class="col-4 label-cadastro">TELEFONE</label>
+                <input asp-for="Input.PhoneNumber" class="col-7 input-cadastro" aria-required="true" placeholder="(11) 11111-1111" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+
+                <label asp-for="Input.DataNascimento" class="col-4 label-cadastro">DATA DE NASCIMENTO</label>
+                <input asp-for="Input.DataNascimento" class="col-7 input-cadastro" aria-required="true" type="date" />
+                <span asp-validation-for="Input.DataNascimento" class="text-danger"></span>
+
+                <label asp-for="Input.Password" class="col-4 label-cadastro">SENHA</label>
+                <input asp-for="Input.Password" class="col-7 input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                <label asp-for="Input.ConfirmPassword" class="col-4 label-cadastro">CONFIRMAR SENHA</label>
+                <input asp-for="Input.ConfirmPassword" class="col-7 input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+                <div class="container container-botao">
+                    <button type="submit" class="col-5 botao-submit">CADASTRAR</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-2 msg-fora-card">
+            <p>Já possui uma conta? Faça login <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">aqui</a></p>
+        </div>
+
+    </div>
+}
+else
+{
+    if (User.IsInRole("Administrador"))
+    {
+        <script type="text/javascript">
+            window.location.href = "/Administrador/Home/Index";
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            window.location.href = "/Jogador/Home/Index";
+        </script>
+    }
+}
+
+
+
+
+
 
 <div class="row">
     <div class="col-md-4">
@@ -12,6 +79,7 @@
             <h2>Criar uma nova conta.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">Email</label>
@@ -40,39 +108,7 @@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Cadastrar</button>
         </form>
     </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use outro serviço para se cadastrar.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            Não há serviços de autenticação externos configurados. Consulte este
-                            <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                                artigo sobre como configurar este aplicativo ASP.NET para oferecer suporte ao login por meio de serviços externos
-                            </a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+    
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

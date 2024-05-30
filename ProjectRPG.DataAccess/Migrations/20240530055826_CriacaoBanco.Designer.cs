@@ -12,7 +12,7 @@ using ProjectRPG.DataAccess.Data;
 namespace ProjectRPG.DataAccess.Migrations
 {
     [DbContext(typeof(RPGDbContext))]
-    [Migration("20240528000459_CriacaoBanco")]
+    [Migration("20240530055826_CriacaoBanco")]
     partial class CriacaoBanco
     {
         /// <inheritdoc />
@@ -493,6 +493,10 @@ namespace ProjectRPG.DataAccess.Migrations
 
                     b.Property<DateOnly>("DataNascimento")
                         .HasColumnType("date");
+
+                    b.Property<string>("NomeUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("RPGUser");
                 });
