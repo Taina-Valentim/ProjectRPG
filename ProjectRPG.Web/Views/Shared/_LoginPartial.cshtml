@@ -1,14 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<RPGUser> SignInManager
+@inject UserManager<RPGUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
             <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                Olá @UserManager.GetUserName(User)!
+                Olá @UserManager.GetUserAsync(User).Result.NomeUsuario!
             </a>
     </li>
     <li class="nav-item">

@@ -1,10 +1,11 @@
 ﻿@page
+@using ProjectRPG.Models
 @model RegisterModel
 @{
     ViewData["Title"] = "Cadastro de Usuário";
 }
 
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<RPGUser> SignInManager
 
 @if (!SignInManager.IsSignedIn(User))
 {

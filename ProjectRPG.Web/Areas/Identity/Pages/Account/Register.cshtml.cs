@@ -25,19 +25,19 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<RPGUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly UserManager<RPGUser> _userManager;
+        private readonly IUserStore<RPGUser> _userStore;
+        private readonly IUserEmailStore<RPGUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
+            UserManager<RPGUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
+            IUserStore<RPGUser> userStore,
+            SignInManager<RPGUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -191,19 +191,19 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Não é possível criar uma instância de '{nameof(IdentityUser)}'. " +
-                    $"Garanta que '{nameof(IdentityUser)}' não é uma classe abstrata e possui um construtor sem parâmetros ou, alternativamente, " +
+                throw new InvalidOperationException($"Não é possível criar uma instância de '{nameof(RPGUser)}'. " +
+                    $"Garanta que '{nameof(RPGUser)}' não é uma classe abstrata e possui um construtor sem parâmetros ou, alternativamente, " +
                     $"substitua a página de registro em /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<IdentityUser> GetEmailStore()
+        private IUserEmailStore<RPGUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("A IU padrão requer um repositório de usuários com suporte por email.");
             }
-            return (IUserEmailStore<IdentityUser>)_userStore;
+            return (IUserEmailStore<RPGUser>)_userStore;
         }
     }
 }

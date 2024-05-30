@@ -15,9 +15,9 @@ namespace ProjectRPG.Web.Areas.Administrador.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<RPGUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public UsuarioController(IUnitOfWork unitOfWork, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public UsuarioController(IUnitOfWork unitOfWork, RoleManager<IdentityRole> roleManager, UserManager<RPGUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _roleManager = roleManager;

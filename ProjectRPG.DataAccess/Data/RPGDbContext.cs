@@ -5,7 +5,7 @@ using ProjectRPG.Models;
 
 namespace ProjectRPG.DataAccess.Data
 {
-    public class RPGDbContext : IdentityDbContext<IdentityUser>
+    public class RPGDbContext : IdentityDbContext<RPGUser>
     {
         public RPGDbContext(DbContextOptions<RPGDbContext> opcoes) : base(opcoes)
         { }
