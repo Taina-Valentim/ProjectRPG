@@ -20,27 +20,27 @@
 
                 <label asp-for="Input.NomeUsuario" class="col-4 label-cadastro">NOME DE USUÁRIO</label>
                 <input asp-for="Input.NomeUsuario" class="col-7 input-cadastro" aria-required="true" placeholder="Nome de usuário" />
-                <span asp-validation-for="Input.NomeUsuario" class="text-danger"></span>
-
+                <span asp-validation-for="Input.NomeUsuario" class="text-danger alerta"></span>
+                
                 <label asp-for="Input.Email" class="col-4 label-cadastro">E-MAIL</label>
                 <input asp-for="Input.Email" class="col-7 input-cadastro" autocomplete="username" aria-required="true" placeholder="seuemail@exemplo.com" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <span asp-validation-for="Input.Email" class="text-danger alerta"></span>
 
                 <label asp-for="Input.PhoneNumber" class="col-4 label-cadastro">TELEFONE</label>
                 <input asp-for="Input.PhoneNumber" class="col-7 input-cadastro" aria-required="true" placeholder="(11) 11111-1111" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger alerta"></span>
 
                 <label asp-for="Input.DataNascimento" class="col-4 label-cadastro">DATA DE NASCIMENTO</label>
                 <input asp-for="Input.DataNascimento" class="col-7 input-cadastro" aria-required="true" type="date" />
-                <span asp-validation-for="Input.DataNascimento" class="text-danger"></span>
+                <span asp-validation-for="Input.DataNascimento" class="text-danger alerta"></span>
 
                 <label asp-for="Input.Password" class="col-4 label-cadastro">SENHA</label>
                 <input asp-for="Input.Password" class="col-7 input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <span asp-validation-for="Input.Password" class="text-danger alerta"></span>
 
                 <label asp-for="Input.ConfirmPassword" class="col-4 label-cadastro">CONFIRMAR SENHA</label>
                 <input asp-for="Input.ConfirmPassword" class="col-7 input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger alerta"></span>
 
                 <div class="container container-botao">
                     <button type="submit" class="col-5 botao-submit">CADASTRAR</button>
@@ -67,49 +67,7 @@ else
             window.location.href = "/Jogador/Home/Index";
         </script>
     }
-}
-
-
-
-
-
-
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Criar uma nova conta.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" aria-required="true" />
-                <label asp-for="Input.PhoneNumber">Número de Telefone</label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.DataNascimento" class="form-control" aria-required="true" type="date" />
-                <label asp-for="Input.DataNascimento">Data de Nascimento</label>
-                <span asp-validation-for="Input.DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Cadastrar</button>
-        </form>
-    </div>
-    
+}   
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

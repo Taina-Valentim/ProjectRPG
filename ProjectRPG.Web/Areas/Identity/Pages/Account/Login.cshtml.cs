@@ -58,8 +58,8 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "O campo 'E-MAIL' é obrigatório")]
+            [EmailAddress(ErrorMessage = "Por favor, insira um e-mail válido")]
             [Display(Name = "E-mail")]
             public string Email { get; set; }
 
@@ -67,7 +67,8 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "O campo 'SENHA' é obrigatório")]
+            [StringLength(100, ErrorMessage = "A senha deve ter entre {2} e {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Senha")]
             public string Password { get; set; }
@@ -108,7 +109,7 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("Usuário logado.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -117,12 +118,12 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Conta de usuário bloqueada.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Dados de login incorretos.");
                     return Page();
                 }
             }

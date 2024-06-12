@@ -1,19 +1,111 @@
 ﻿@page
+@using ProjectRPG.Models
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Seu Perfil";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
+@inject UserManager<RPGUser> UserManager
+@inject SignInManager<RPGUser> SignInManager
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="manage">
+        <div class="menu-lateral-perfil">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="container cartao perfil">
+            <div class="cartao-topo">
+                <h2 class="cartao-titulo">Seu Perfil</h2>
+            </div>
+
+            <div class="cartao-conteudo">
+
+                <partial name="_StatusMessage" for="StatusMessage" />
+
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <label asp-for="Input.Email" class="col-4 label-cadastro"></label>
+                    <input asp-for="Input.Email" class="col-7 input-cadastro" aria-required="true" autocomplete="@UserManager.GetUserAsync(User).Result.Email" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
+
+                    <label asp-for="Input.NomeUsuario" class="col-4 label-cadastro"></label>
+                    <input asp-for="Input.NomeUsuario" class="col-7 input-cadastro" aria-required="true" placeholder="@UserManager.GetUserAsync(User).Result.PhoneNumber" />
+                    <span asp-validation-for="Input.NomeUsuario" class="text-danger alerta"></span>
+
+                    <label asp-for="Input.PhoneNumber" class="col-4 label-cadastro"></label>
+                    <input asp-for="Input.PhoneNumber" class="col-7 input-cadastro" aria-required="true" placeholder="@UserManager.GetUserAsync(User).Result.PhoneNumber" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger alerta"></span>
+
+                    <label asp-for="Input.DataNascimento" class="col-4 label-cadastro"></label>
+                    <input asp-for="Input.DataNascimento" class="col-7 input-cadastro" aria-required="true" type="date" placeholder="@UserManager.GetUserAsync(User).Result.DataNascimento" />
+                    <span asp-validation-for="Input.DataNascimento" class="text-danger alerta"></span>
+
+                    <div class="container container-botao">
+                        <button type="submit" class="col-5 botao-submit">Atualizar Dados</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+}
+else
+{
+    <script type="text/javascript">
+        window.location.href = "/Identity/Account/Login";
+    </script>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@{
+    /*
+
+
+            @page
+        @using ProjectRPG.Models
+        @model IndexModel
+    @{
+    ViewData["Title"] = "Seu Perfil";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+        }
+        @inject UserManager<RPGUser> UserManager
+
+        <h3>@ViewData["Title"]</h3>
+        <partial name="_StatusMessage" for="StatusMessage" />
+    <div class="row">
+        <div class="col-md-6">
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
-                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="@UserManager.GetUserAsync(User).Result.NomeUsuario" class="form-control" placeholder="Please choose your username." disabled />
+                <label asp-for="Input.NomeUsuario" class="form-label"></label>
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
@@ -21,10 +113,17 @@
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-        </form>
-    </div>
-</div>
+    </form>
+            </div>
+        </div>
 
-@section Scripts {
+    @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+        }
+
+
+    */
+
 }
+
+

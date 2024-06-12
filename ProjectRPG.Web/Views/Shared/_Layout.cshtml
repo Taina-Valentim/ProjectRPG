@@ -19,17 +19,18 @@
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZOOMbies</a>
         </div>
 
-        <div id="login-e-botao">
-            <partial name="_LoginPartial" />
+        <div id="centralizar">
             <button id="botao-alterar-tema">
                 <img src="/images/server/sun.png" alt="imagem do sol" class="imagem-botao" />
             </button>
         </div>
+
+        <div id="login-partial">
+            <partial name="_LoginPartial" />
+        </div>
     </header>
 
-
-
-
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

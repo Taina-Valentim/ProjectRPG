@@ -75,45 +75,39 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [EmailAddress]
+
+            [Required(ErrorMessage = "O campo 'E-MAIL' é obrigatório")]
+            [EmailAddress(ErrorMessage = "Por favor, insira um e-mail válido")]
             [Display(Name = "E-mail")]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} deve ter pelo menos {2} e no máximo {1} caracteres.", MinimumLength = 6)]
+            [Required(ErrorMessage = "O campo 'SENHA' é obrigatório")]
+            [StringLength(100, ErrorMessage = "A senha deve ter entre {2} e {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Senha")]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+
             [DataType(DataType.Password)]
             [Display(Name = "Confirmar Senha")]
+            [Required(ErrorMessage = "O campo 'CONFIRMAR SENHA' é obrigatório")]
             [Compare("Password", ErrorMessage = "As senhas não coincidem")]
             public string ConfirmPassword { get; set; }
 
             public string UserName { get; set; }
 
             [Display(Name = "Nome de usuário")]
-            public required string NomeUsuario { get; set; }
+            [Required(ErrorMessage = "O campo 'NOME DE USUÁRIO' é obrigatório")]
+            public string NomeUsuario { get; set; }
 
             [Display(Name = "Data de Nascimento")]
+            [Required(ErrorMessage = "O campo 'DATA DE NASCIMENTO' é obrigatório")]
             public DateOnly DataNascimento { get; set; }
 
             
             [Display(Name = "Número de Telefone")]
-            [Phone]
+            [Phone(ErrorMessage = "Por favor, insira um telefone válido")]
+            [Required(ErrorMessage = "O campo 'TELEFONE' é obrigatório")]
             public string PhoneNumber { get; set; }
         }
 

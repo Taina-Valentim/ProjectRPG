@@ -16,16 +16,16 @@
         </div>
 
         <div id="cartao-conteudo" class="cartao-conteudo">
-            <form id="account" method="post">
+            <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
                 <label asp-for="Input.Email" class="col-3 label-login">E-MAIL</label>
                 <input asp-for="Input.Email" class="col-8 input-login" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <span asp-validation-for="Input.Email" class="text-danger row alerta-login"></span>
 
                 <label asp-for="Input.Password" class="col-3 label-login">SENHA</label>
                 <input asp-for="Input.Password" class="col-8 input-login" autocomplete="current-password" aria-required="true" placeholder="password" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <span asp-validation-for="Input.Password" class="text-danger row alerta-login"></span>
 
                 <label asp-for="Input.RememberMe" class="check-lembrar">
                     <input class="form-check-input" asp-for="Input.RememberMe" />
