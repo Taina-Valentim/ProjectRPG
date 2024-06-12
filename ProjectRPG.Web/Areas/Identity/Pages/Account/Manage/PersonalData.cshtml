@@ -1,26 +1,51 @@
 ﻿@page
+@using ProjectRPG.Models
 @model PersonalDataModel
 @{
-    ViewData["Title"] = "Personal Data";
+    ViewData["Title"] = "Dados pessoais";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h3>@ViewData["Title"]</h3>
+@inject UserManager<RPGUser> UserManager
+@inject SignInManager<RPGUser> SignInManager
 
-<div class="row">
-    <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
-        <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
-        </p>
-        <form id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary" type="submit">Download</button>
-        </form>
-        <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
-        </p>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="manage">
+        <div class="menu-lateral-perfil">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="container cartao perfil">
+            <div class="cartao-topo">
+                <h2 class="cartao-titulo">@ViewData["Title"]</h2>
+            </div>
+
+            <div class="row cartao-conteudo">
+
+                <p class="col-10">Sua conta contém dados pessoais que você nos forneceu. Esta página permite que você baixe ou exclua esses dados.</p>
+                <p class="col-10">
+                    <strong>A exclusão desses dados removerá permanentemente sua conta e eles não poderão ser recuperados.</strong>
+                </p>
+                <form asp-page="DownloadPersonalData" method="post">
+                    <div class="container container-botao">
+                        <button type="submit" class="col-5 botao-submit">Download</button>
+                    </div>
+                </form>
+                <div class="container container-botao">
+                    <a asp-page="DeletePersonalData" class="col-5 botao-submit delete-personal-data">Apagar</a>
+                </div>
+
+            </div>
+        </div>
     </div>
-</div>
+
+}
+else
+{
+    <script type="text/javascript">
+        window.location.href = "/Identity/Account/Login";
+    </script>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

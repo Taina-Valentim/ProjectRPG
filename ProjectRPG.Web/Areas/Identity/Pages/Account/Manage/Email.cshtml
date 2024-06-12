@@ -1,43 +1,66 @@
 ﻿@page
+@using ProjectRPG.Models
 @model EmailModel
 @{
-    ViewData["Title"] = "Manage Email";
+    ViewData["Title"] = "Gerenciar e-mail";
     ViewData["ActivePage"] = ManageNavPages.Email;
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="email-form" method="post">
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-            @if (Model.IsEmailConfirmed)
-            {
-                <div class="form-floating mb-3 input-group">
-                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
+@inject UserManager<RPGUser> UserManager
+@inject SignInManager<RPGUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <partial name="_StatusMessage" for="StatusMessage" />
+    <div class="manage">
+        <div class="menu-lateral-perfil">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="container cartao perfil">
+            <div class="cartao-topo">
+                <h2 class="cartao-titulo">@ViewData["Title"]</h2>
+            </div>
+
+            <div class="cartao-conteudo">
+                <form method="post" class="formulario">
+                    <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+
+                    @if (Model.IsEmailConfirmed)
+                    {
+                        <label asp-for="Email" class="col-4 label-cadastro"></label>
+                        <input asp-for="Email" class="col-7 input-cadastro" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
                         <div class="input-group-append">
                             <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
                         </div>
-                    <label asp-for="Email" class="form-label"></label>
-                </div>
-            }
-            else
-            {
-                <div class="form-floating mb-3">
-                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
-                    <label asp-for="Email" class="form-label"></label>
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
-                </div>
-            }
-            <div class="form-floating mb-3">
-                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Please enter new email." />
-                <label asp-for="Input.NewEmail" class="form-label"></label>
-                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <label asp-for="Email" class="col-3 label-cadastro"></label>
+                        <input asp-for="Email" class="col-8 input-cadastro" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
+                        <div class="container container-botao">
+                            <button id="email-verification-button" type="submit" asp-page-handler="SendVerificationEmail" class="col-5 botao-submit">Enviar e-mail de confirmação</button>
+                        </div>
+                    }
+
+                    <label asp-for="Input.NewEmail" class="col-3 label-cadastro"></label>
+                    <input asp-for="Input.NewEmail" class="col-8 input-cadastro" autocomplete="email" aria-required="true" placeholder="Por favor, insira um novo e-mail." />
+                    <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+
+                    <div class="container container-botao">
+                        <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="col-5 botao-submit">Alterar e-mail</button>
+                    </div>
+                </form>
             </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Change email</button>
-        </form>
+        </div>
     </div>
-</div>
+
+}
+else
+{
+    <script type="text/javascript">
+        window.location.href = "/Identity/Account/Login";
+    </script>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

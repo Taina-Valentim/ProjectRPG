@@ -12,6 +12,7 @@
     --texto-notificacao-sucesso: #004500;
     --background-notificacao-erro: #FFAEAE;
     --texto-notificacao-erro: ##880000;
+    --background-botao-vermelho: #C90000;
 }
 /* =========================== */
 
@@ -466,27 +467,66 @@ main .descricao {
     flex-grow: 0;
     font-size: 16px;
     color: var(--texto-modo-claro);
+    margin-left: 76px;
 }
 
 .perfil {
     order: 2;
     justify-content: left;
-    margin-left: -15px;
 }
 
 .item-menu-lateral {
     color: var(--texto-modo-claro);
     border-top: 2px solid var(--texto-modo-claro);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
+    .item-menu-lateral.active {
+        background-color: var(--verde-escuro);
+        border-left: 2px solid var(--texto-modo-claro);
+        border-right: 2px solid var(--texto-modo-claro);
+    }
+
 #personal-data {
-    padding-bottom: 20px;
+    margin-bottom: -16px;
+    padding-bottom: 16px;
     border-bottom: 2px solid var(--texto-modo-claro);
 }
 
 #lista {
     list-style: none;
-    margin-top: 5px;
+    margin-top: 49px;
+}
+
+#email-verification-button, #change-email-button {
+    font-size: 12px;
+    width: 230px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.formulario {
+    width: 100%;
+}
+
+.delete-personal-data {
+    text-decoration: none;
+    text-align: center;
+    border: 4px solid var(--background-botao-vermelho);
+    margin-top: 0px;
+}
+
+    .delete-personal-data:hover {
+        background-color: var(--background-botao-vermelho);
+    }
+
+#alerta-excluir-dados {
+    font-size: 15px;
+    padding-bottom: 0px;
+}
+
+#delete-personal-data-botao {
+    font-size: 15px;
+    width: 200px;
 }

@@ -1,16 +1,11 @@
 ﻿@using ProjectRPG.Models
 @inject SignInManager<RPGUser> SignInManager
 @{
-    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+    var paginaAtual = ViewContext.ActionDescriptor.RouteValues["Page"]?.ToString().Split("/").Last();
 }
 <ul id="lista">
-    <li class="nav-item item-menu-lateral"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Perfil</a></li>
-    <li class="nav-item item-menu-lateral"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">E-mail</a></li>
-    <li class="nav-item item-menu-lateral"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
-    @if (hasExternalLogins)
-    {
-        <li id="external-logins" class="nav-item item-menu-lateral"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">Login Externo</a></li>
-    }
-    <li class="nav-item item-menu-lateral"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Autênticação em 2 Fatores</a></li>
-    <li class="nav-item item-menu-lateral"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Dados Pessoais</a></li>
+    <li class="nav-item item-menu-lateral @(paginaAtual == "Index" ? "active" : "")"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Perfil</a></li>
+    <li class="nav-item item-menu-lateral @(paginaAtual == "Email" ? "active" : "")"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">E-mail</a></li>
+    <li class="nav-item item-menu-lateral @(paginaAtual == "ChangePassword" ? "active" : "")"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Senha</a></li>
+    <li class="nav-item item-menu-lateral @(paginaAtual == "PersonalData" ? "active" : "")"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Dados Pessoais</a></li>
 </ul>
