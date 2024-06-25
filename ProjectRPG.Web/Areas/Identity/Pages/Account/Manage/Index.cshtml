@@ -24,22 +24,22 @@
                 <form method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
-                    <label asp-for="Input.Email" class="col-4 label-cadastro"></label>
-                    <input asp-for="Input.Email" class="col-7 input-cadastro" aria-required="true" autocomplete="@UserManager.GetUserAsync(User).Result.Email" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
+                    <label asp-for="Input.Email" class="label-cadastro"></label>
+                    <input asp-for="Input.Email" class="input-cadastro" aria-required="true" autocomplete="@UserManager.GetUserAsync(User).Result.Email" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
 
-                    <label asp-for="Input.NomeUsuario" class="col-4 label-cadastro"></label>
-                    <input asp-for="Input.NomeUsuario" class="col-7 input-cadastro" aria-required="true" placeholder="@UserManager.GetUserAsync(User).Result.PhoneNumber" />
+                    <label asp-for="Input.NomeUsuario" class="label-cadastro"></label>
+                    <input asp-for="Input.NomeUsuario" class="input-cadastro" aria-required="true" placeholder="@UserManager.GetUserAsync(User).Result.PhoneNumber" />
                     <span asp-validation-for="Input.NomeUsuario" class="text-danger alerta"></span>
 
-                    <label asp-for="Input.PhoneNumber" class="col-4 label-cadastro"></label>
-                    <input asp-for="Input.PhoneNumber" class="col-7 input-cadastro" aria-required="true" placeholder="@UserManager.GetUserAsync(User).Result.PhoneNumber" />
+                    <label asp-for="Input.PhoneNumber" class="label-cadastro"></label>
+                    <input asp-for="Input.PhoneNumber" class="input-cadastro" aria-required="true" placeholder="@UserManager.GetUserAsync(User).Result.PhoneNumber" />
                     <span asp-validation-for="Input.PhoneNumber" class="text-danger alerta"></span>
 
-                    <label asp-for="Input.DataNascimento" class="col-4 label-cadastro"></label>
-                    <input asp-for="Input.DataNascimento" class="col-7 input-cadastro" aria-required="true" type="date" placeholder="@UserManager.GetUserAsync(User).Result.DataNascimento" />
+                    <label asp-for="Input.DataNascimento" class="label-cadastro"></label>
+                    <input asp-for="Input.DataNascimento" class="input-cadastro" aria-required="true" type="date" placeholder="@UserManager.GetUserAsync(User).Result.DataNascimento" />
                     <span asp-validation-for="Input.DataNascimento" class="text-danger alerta"></span>
 
-                    <div class="container container-botao">
+                    <div class="container-botao">
                         <button type="submit" class="col-5 botao-submit">Atualizar Dados</button>
                     </div>
                 </form>

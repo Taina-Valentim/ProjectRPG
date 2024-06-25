@@ -11,8 +11,17 @@
     --background-notificacao-sucesso: #C0FFC0;
     --texto-notificacao-sucesso: #004500;
     --background-notificacao-erro: #FFAEAE;
-    --texto-notificacao-erro: ##880000;
+    --texto-notificacao-erro: #880000;
     --background-botao-vermelho: #C90000;
+    /**************************************************/
+    --background-header-tabela: #00FFA2;
+    --background-header-tabela-modo-escuro: #002D1D;
+    --texto-header-tabela: #000000;
+    --texto-header-tabela-modo-escuro: #FFFFFF;
+    --background-body-tabela: #B0FFE2;
+    --background-body-tabela-modo-escuro: #005B3A;
+    --texto-body-tabela: #434343;
+    --texto-body-tabela-modo-escuro: #BEBEBE;
 }
 /* =========================== */
 
@@ -57,16 +66,31 @@ body {
 /* =========================== */
 
 
-
+.container {
+    width: 100vw;
+}
 
 /* =====     Header     ===== */
 .header {
-    width: 100%;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 35px;
+    padding-right: 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: var(--card-claro-background);
+    z-index: 1000;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+    .header.modo-escuro {
+        background-color: var(--card-escuro-background);
+    }
 
 #centralizar {
     flex: 1;
@@ -79,7 +103,7 @@ body {
 }
 
 .btn-sair {
-    margin-left: 40px;
+    margin-left: 20px;
 }
 
 .header .logo,
@@ -93,32 +117,31 @@ body {
         border: none;
     }
 
-    .header .logo:hover,
-    .header .imagem-botao:hover,
-    main .cartao-pokemon:hover {
-        transform: scale(1.05);
-        cursor: pointer;
-    }
+.header .logo:hover,
+.header .imagem-botao:hover:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
 /* ========================== */
-
-
 
 
 /* =====      Main      ===== */
 main {
-    padding: 40px;
+    padding-top: 40px;
 }
 
-    main .listagem-pokemon {
+    main .listagem {
         display: flex;
         flex-wrap: wrap;
-        gap: 50px;
-        justify-content: center;
+        gap: 40px;
+        justify-content: space-between;
+        width: 80%;
+        padding: 0px;
     }
 
-    main .cartao-pokemon {
-        background-color: #d8e3ec;
-        width: 250px;
+    main .cartao-dashboard {
+        background-color: var(--card-claro-background);
+        width: 300px;
         padding: 15px;
         display: flex;
         flex-direction: column;
@@ -126,52 +149,79 @@ main {
         gap: 40px;
         border-radius: 15px;
         transition: 0.2s ease-in-out;
+        cursor: pointer;
     }
 
-        main .cartao-pokemon:hover {
-            background-color: #96d9d6;
+        main .cartao-dashboard:hover {
+            background-color: var(--verde-claro);
+            transform: scale(1.05);
+            transition: 0.3s all;
         }
 
-.modo-escuro .cartao-pokemon {
-    background-color: #a8a8a8;
+.modo-escuro .cartao-dashboard {
+    background-color: var(--card-escuro-background);
 }
+    .modo-escuro .cartao-dashboard:hover {
+        background-color: var(--verde-escuro);
+        transform: scale(1.05);
+        transition: 0.3s all;
+    }
 
-main .cartao-pokemon .informacoes {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #333333;
+.informacoes {
+    display: inline-block;
+    text-align: center;
+    width: 80%;
+    padding: 10px;
+    border: 2px solid var(--texto-modo-claro);
     border-radius: 10px;
 }
+    .informacoes.modo-escuro {
+        border: 2px solid var(--texto-modo-escuro);
+    }
+    
 
-    main .cartao-pokemon .informacoes span {
+    .informacoes span {
         padding: 7px;
         text-transform: uppercase;
         font-size: 17px;
+        text-align: center;
     }
 
-main .cartao-pokemon .gif {
+.informacoes .modo-escuro {
+    border: 2px solid var(--texto-modo-escuro);
+}
+
+main .cartao-dashboard .gif {
     width: 100px;
     height: 100px;
 }
 
-main .cartao-pokemon .tipos {
-    display: flex;
-    gap: 15px;
+.acoes {
     padding: 8px;
+    width: 58%;
     border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--background-escuro);
+    color: var(--texto-modo-escuro);
 }
 
-.fogo {
-    background-color: #ee8130;
-}
+    .acoes:hover {
+        transform: scale(1.05);
+        transition: 0.3s all;
+        color: var(--texto-modo-escuro);
+    }
+
+    .acoes.modo-escuro {
+        background-color: var(--card-claro-background);
+        color: var(--texto-modo-claro);
+    }
 
 
-main .descricao {
-    max-height: 80px;
-    overflow-y: scroll;
-    font-size: 14px;
-    padding-right: 10px;
-}
+
+
+
 /* ========================== */
 
 /****************************************************************************************/
@@ -219,7 +269,6 @@ main .descricao {
     align-items: center;
     width: 695px;
     min-height: 350px;
-    max-height: 570px;
     border: 4px solid var(--verde-escuro);
     overflow: hidden;
     margin-top: -4px;
@@ -240,27 +289,30 @@ main .descricao {
 .label-login {
     font-size: 20px;
     font-weight: 300;
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
 }
 .input-login {
     font-size: 20px;
     font-weight: 300;
     margin: 10px;
+    width: 400px;
 }
 
 .label-cadastro {
     font-size: 15px;
     font-weight: 300;
     text-align: left;
-    padding-left: 40px;
     text-transform: uppercase;
+    width: 200px;
+    text-align: start;
 }
 
 .input-cadastro {
     font-size: 15px;
     font-weight: 300;
     margin: 10px;
+    width: 350px;
 }
 
 .label-rec-senha {
@@ -274,7 +326,7 @@ main .descricao {
 .input-rec-senha {
     font-size: 20px;
     font-weight: 300;
-    width: 450px;
+    width: 400px;
     margin: 10px;
 }
 
@@ -305,12 +357,7 @@ main .descricao {
 .botao-submit.modo-escuro {
     background-color: var(--card-escuro-background);
     color: var(--texto-modo-escuro);
-    padding: 3px;
-    width: 224px;
-    font-size: 20px;
-    font-weight: 700;
     border: 4px solid var(--verde-claro);
-    overflow: hidden;
 }
         .botao-submit.modo-escuro:hover {
             transform: scale(1.05);
@@ -335,8 +382,6 @@ main .descricao {
 
 
 #forgot-password, #resend-confirmation, .check-lembrar {
-    padding-left: 40px;
-    padding-right: 40px;
     font-size: 12px;
     font-weight: 200;
     text-align: center;
@@ -351,7 +396,6 @@ main .descricao {
 .check-lembrar {
     padding-top: 10px;
     padding-bottom: 15px;
-    padding-left: 50px;
     text-decoration: none;
     color: var(--texto-modo-claro);
 }
@@ -382,6 +426,7 @@ main .descricao {
     }
 
 .opcoes {
+    max-width: 700px;
     display: flex;
     justify-content: space-between;
 }
@@ -424,8 +469,8 @@ main .descricao {
 .alerta {
     font-size: 10px;
     margin-top: 5px;
-    padding-left: 245px;
-    padding-right: 200px;
+    padding-left: 217px;
+    padding-right: 100px;
 }
 
 .alerta-login {
@@ -434,16 +479,21 @@ main .descricao {
     padding-left: 140px;
     padding-right: 200px;
 }
+
+
+form {
+    max-width: 600px;
+    align-items: center;
+}
 /* ========================== */
 
 
 
 
-.notificacao {
-    font-size: 15px;
-    width: 50%;
-    margin: 0 auto;
-    width: 695px;
+.alert {
+    font-size: 12px;
+    margin: 0;
+    width: 550px;
     margin-bottom: 25px;
 }
 
@@ -456,6 +506,7 @@ main .descricao {
     justify-content: space-between;
     margin-right: 0;
     flex-grow: 0;
+    margin-left: 23px
 }
 
 .menu-lateral-perfil {
@@ -466,7 +517,6 @@ main .descricao {
     max-height: 570px;
     flex-grow: 0;
     font-size: 16px;
-    color: var(--texto-modo-claro);
     margin-left: 76px;
 }
 
@@ -494,17 +544,74 @@ main .descricao {
     border-bottom: 2px solid var(--texto-modo-claro);
 }
 
+
+
+#lista .nav-item.item-menu-lateral.modo-escuro:nth-child(1),
+#lista .nav-item.item-menu-lateral.modo-escuro:nth-child(2),
+#lista .nav-item.item-menu-lateral.modo-escuro:nth-child(3),
+#lista .nav-item.item-menu-lateral.modo-escuro:nth-child(4) {
+    color: var(--texto-modo-escuro);
+    border-top: 2px solid var(--texto-modo-escuro);
+}
+    #lista .nav-item.item-menu-lateral.active.modo-escuro:nth-child(1),
+    #lista .nav-item.item-menu-lateral.active.modo-escuro:nth-child(2),
+    #lista .nav-item.item-menu-lateral.active.modo-escuro:nth-child(3),
+    #lista .nav-item.item-menu-lateral.active.modo-escuro:nth-child(4) {
+        background-color: var(--verde-claro);
+        border-left: 2px solid var(--texto-modo-escuro);
+        border-right: 2px solid var(--texto-modo-escuro);
+    }
+
+#lista .nav-item.item-menu-lateral.modo-escuro:nth-child(1) {
+    color: var(--texto-modo-escuro);
+    border-top: 2px solid var(--texto-modo-escuro);
+}
+    #lista .nav-item.item-menu-lateral.active.modo-escuro:nth-child(1)
+    {
+        background-color: var(--verde-claro);
+        border-left: 2px solid var(--texto-modo-escuro);
+        border-right: 2px solid var(--texto-modo-escuro);
+    }
+
+#lista .nav-item.item-menu-lateral.modo-escuro:nth-child(4) {
+    color: var(--texto-modo-escuro);
+    border-bottom: 2px solid var(--texto-modo-escuro);
+}
+    #lista .nav-item.item-menu-lateral.active.modo-escuro:nth-child(4) {
+        background-color: var(--verde-claro);
+        border-left: 2px solid var(--texto-modo-escuro);
+        border-right: 2px solid var(--texto-modo-escuro);
+    }
+
 #lista {
     list-style: none;
     margin-top: 49px;
+    width: 200px;
 }
 
-#email-verification-button, #change-email-button {
+.botao-submit.menor {
     font-size: 12px;
     width: 230px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+    .botao-submit.menor.modo-escuro {
+        background-color: var(--card-escuro-background);
+        color: var(--texto-modo-escuro);
+        border: 4px solid var(--verde-claro);
+    }
+
+        .botao-submit.menor.modo-escuro:hover {
+            transform: scale(1.05);
+            transition: 0.3s all;
+            background-color: var(--verde-claro);
+            color: var(--texto-modo-claro);
+        }
+
+        .botao-submit.menor.modo-escuro:not(:hover) {
+            transition: 0.3s all;
+        }
+
 
 .formulario {
     width: 100%;
@@ -516,10 +623,17 @@ main .descricao {
     border: 4px solid var(--background-botao-vermelho);
     margin-top: 0px;
 }
-
     .delete-personal-data:hover {
         background-color: var(--background-botao-vermelho);
     }
+    .delete-personal-data.modo-escuro {
+        border: 4px solid var(--background-botao-vermelho);
+    }
+    .delete-personal-data.modo-escuro:hover {
+        background-color: var(--background-botao-vermelho);
+        border: 4px solid var(--background-botao-vermelho);
+    }
+
 
 #alerta-excluir-dados {
     font-size: 15px;
@@ -530,3 +644,223 @@ main .descricao {
     font-size: 15px;
     width: 200px;
 }
+
+
+.notificacao {
+    margin-left: 310px;
+    width: 695px;
+}
+
+.visualizar {
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    width: 110%;
+}
+
+.icone-voltar {
+    width: 800px;
+}
+
+.gerenciar-usuarios {
+    width: 1100px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+}
+
+.div-adicionar {
+    width: 89%;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tabela {
+    max-width: 89%;
+    margin-top: 20px; 
+}
+
+.div-tabela {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-adicionar {
+    width: 100%;
+    padding: 10px 10px;
+    text-transform: uppercase;
+}
+
+#icone-add {
+    padding-right: 15px;
+    width: 45px;
+    height: 40px;
+}
+
+.coluna-1 {
+    width: 800px;
+}
+
+.coluna-2 {
+    width: 800px;
+}
+
+.coluna-3 {
+    width: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.coluna-4 {
+    width: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.coluna-5 {
+    width: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.coluna-6 {
+    width: 200px;
+}
+
+.coluna-7 {
+    width: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.coluna-8 {
+    width: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.coluna-9 {
+    width: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.coluna-10 {
+    width: 200px;
+}
+
+.coluna-11 {
+    width: 200px;
+}
+
+.header-tabela {
+    background-color: var(--background-header-tabela);
+    color: var(--texto-header-tabela);
+    text-transform: uppercase;
+    font-size: 15px;
+    text-align: center;
+    height: 70px;
+}
+
+    .header-tabela.modo-escuro {
+        background-color: var(--background-header-tabela-modo-escuro);
+        color: var(--texto-header-tabela-modo-escuro);
+    }
+
+table {
+    border: solid 4px var(--texto-modo-claro);
+    margin-bottom: 80px;
+}
+
+th, td {
+    border: solid 3px var(--texto-modo-claro);
+}
+
+td {
+    padding: 25px 10px;
+    background-color: var(--background-body-tabela);
+    color: var(--texto-body-tabela);
+}
+
+.modo-escuro table{
+    border: solid 4px var(--texto-modo-escuro);
+}
+
+    .modo-escuro th, .modo-escuro td {
+        border: solid 3px var(--texto-modo-escuro);
+    }
+
+    .modo-escuro td {
+        background-color: var(--background-body-tabela-modo-escuro);
+        color: var(--texto-body-tabela-modo-escuro);
+    }
+
+
+
+
+
+.btn-dark {
+    color: var(--texto-modo-escuro);
+}
+
+.btn-light {
+    color: var(--texto-modo-claro);
+}
+
+
+.check-municao {
+    font-size: 15px;
+    font-weight: 300;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    color: var(--texto-modo-claro);
+    text-transform: uppercase;
+    width: 800px;
+}
+
+    .check-municao.modo-escuro {
+        color: var(--texto-modo-escuro);
+    }
+
+    .check-municao input {
+        margin-right: 8px;
+        width: 20px;
+        height: 20px;
+        margin-left: 100px;
+    }
+
+textarea {
+    width: 100px; /* Defina a largura desejada */
+    height: 150px; /* Defina a altura desejada */
+    padding: 10px; /* Espaçamento interno opcional */
+    resize: none; /* Impede o redimensionamento */
+}
+
+.label-cadastro.descricao {
+    vertical-align: top; /* Alinha a label "DESCRIÇÃO" ao topo */
+    margin-top: 10px; /* Adiciona um espaço superior opcional */
+}
+
+/* Estilo adicional para o campo "DESCRIÇÃO" */
+.descricao {
+    display: inline-block; /* Garante que o textarea fique na mesma linha que a label */
+    vertical-align: top; /* Alinha o textarea ao topo */
+}
+
+.input-cadastro.number {
+    width: 80px;
+    margin-right: 200px;
+}
+
+#btn-voltar {
+    margin-bottom: 20px;
+}
+
+    #btn-voltar:hover {
+        transform: scale(1.2);
+        transition: 0.5s all;
+    }

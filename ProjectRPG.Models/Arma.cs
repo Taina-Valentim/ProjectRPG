@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectRPG.Models
 {
-    public class Armamento
+    public class Arma
     {
         [Key]
         public int Id { get; set; }
@@ -14,7 +14,7 @@ namespace ProjectRPG.Models
         public required string Nome { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(10000)]
         [Display(Name = "Descrição")]
         public required string Descricao { get; set; }
 

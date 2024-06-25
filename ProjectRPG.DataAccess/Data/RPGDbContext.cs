@@ -12,7 +12,7 @@ namespace ProjectRPG.DataAccess.Data
 
         #region DbSet
 
-        public DbSet<Armamento> Armas { get; set; }
+        public DbSet<Arma> Armas { get; set; }
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<Condicao> Condicoes { get; set; }
         public DbSet<Equipamento> Equipamentos { get; set; }

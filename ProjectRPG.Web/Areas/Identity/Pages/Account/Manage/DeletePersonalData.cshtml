@@ -17,7 +17,7 @@
         </div>
 
         <div class="row cartao-conteudo">
-            <div id="alerta-excluir-dados" class="col-10 alert alert-warning" role="alert">
+            <div id="alerta-excluir-dados" class="alert alert-warning" role="alert">
                 <p>
                     <strong>Excluir esses dados removerá permanentemente sua conta e ela não poderá ser recuperada.</strong>
                 </p>
@@ -26,11 +26,11 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 @if (Model.RequirePassword)
                 {
-                    <label asp-for="Input.Password" class="col-2 label-cadastro"></label>
-                    <input asp-for="Input.Password" class="col-9 input-cadastro" autocomplete="Senha atual" aria-required="true" placeholder="Por favor, digite sua senha." />
+                    <label asp-for="Input.Password" class="label-cadastro" style="width: 60px; margin-left: 60px;"></label>
+                    <input asp-for="Input.Password" class="input-cadastro" style="width: 470px;" autocomplete="Senha atual" aria-required="true" placeholder="Por favor, digite sua senha." />
                     <span asp-validation-for="Input.Password" class="text-danger alerta"></span>
                 }
-                <div class="container container-botao mt-3">
+                <div class="container-botao mt-3">
                     <button id="delete-personal-data-botao" type="submit" class="col-5 botao-submit delete-personal-data">Excluir dados e fechar minha conta</button>
                 </div>
             </form>

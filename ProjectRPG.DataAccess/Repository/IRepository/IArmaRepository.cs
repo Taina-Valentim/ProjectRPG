@@ -2,8 +2,8 @@
 
 namespace ProjectRPG.DataAccess.Repository.IRepository
 {
-    public interface IArmaRepository : IRepository<Armamento>
+    public interface IArmaRepository : IRepository<Arma>
     {
-        void Alterar(Armamento arma);
+        void Alterar(Arma arma);
     }
 }

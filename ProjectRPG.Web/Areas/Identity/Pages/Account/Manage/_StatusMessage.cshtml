@@ -2,7 +2,7 @@
 
 @if (!String.IsNullOrEmpty(Model))
 {
-    var statusMessageClass = Model.StartsWith("Erro") ? "danger" : "success";
+    var statusMessageClass = ViewContext.ModelState.IsValid ? "danger" : "success";
     <div class="alert alert-@statusMessageClass alert-dismissible notificacao notificacao-@statusMessageClass" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         @Model

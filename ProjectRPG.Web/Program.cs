@@ -44,6 +44,6 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Jogador}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Administrador}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

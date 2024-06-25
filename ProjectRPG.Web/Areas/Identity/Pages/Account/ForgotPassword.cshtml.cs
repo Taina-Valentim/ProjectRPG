@@ -35,6 +35,9 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -55,10 +58,13 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (user == null) //  || !(await _userManager.IsEmailConfirmedAsync(user)) para verificar se confirmou e-mail
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return RedirectToPage("./ForgotPasswordConfirmation");
+                    //return RedirectToPage("./ForgotPasswordConfirmation");
+                    ModelState.AddModelError(string.Empty, "");
+                    StatusMessage = "Usuário não cadastrado.";
+                    return Page();
                 }
 
                 // For more information on how to enable account confirmation and password reset please
@@ -73,10 +79,11 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Redefinir senha",
+                    $"Redefina sua senha clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
 
-                return RedirectToPage("./ForgotPasswordConfirmation");
+                //return RedirectToPage("./ForgotPasswordConfirmation");
+                StatusMessage = "Verifique seu e-mail para redefinir sua senha.";
             }
 
             return Page();

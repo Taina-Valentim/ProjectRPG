@@ -15,62 +15,50 @@
     }
     else
     {
-		<a asp-area="Administrador" asp-controller="Usuario" asp-action="Index">Usuario</a>
-		<ul class="listagem-pokemon">
-			<li class="cartao-pokemon">
-				<div class="informacoes">
-					<span>Armas</span>
-				</div>
-
-				<img src="/images/dashboard/arma.gif" alt="Arma" class="gif" />
-
-				<a class="tipos fogo">Adicionar</a>
-				<a class="tipos fogo">Editar</a>
-				<a class="tipos fogo">Excluir</a>
-			</li>
-
-			<li class="cartao-pokemon">
-				<div class="informacoes">
-					<span>Equipamentos</span>
-				</div>
-
-				<img src="/images/dashboard/colete.gif" alt="Colete" class="gif" />
-
-				<ul class="tipos">
-					<li class="tipo grama">Adicionar</li>
-					<li class="tipo grama">Editar</li>
-					<li class="tipo grama">Excluir</li>
-				</ul>
-			</li>
-
-			<li class="cartao-pokemon">
-				<div class="informacoes">
-					<span>Itens</span>
-				</div>
-
-				<img src="/images/dashboard/barraca.gif" alt="Barraca" class="gif" />
-
-				<ul class="tipos">
-					<li class="tipo grama">Adicionar</li>
-					<li class="tipo grama">Editar</li>
-					<li class="tipo grama">Excluir</li>
-				</ul>
-
-			</li>
-
-			<li class="cartao-pokemon">
-				<div class="informacoes">
-					<span>Personagens</span>
-				</div>
-
-				<img src="/images/dashboard/personagens.gif" alt="Personagens" class="gif" />
-
-				<ul class="tipos">
-					<li class="tipo fogo">Fogo</li>
-				</ul>
-
-				<p class="descricao">Tem preferência por coisas quentes. Quando chove, diz-se que o vapor jorra da ponta de sua cauda.</p>
-			</li>
-		</ul>
+        
+        <li class="nav-item">
+            <ul class="container listagem">
+                <a asp-area="Administrador" asp-controller="Usuario" asp-action="Index" class="gerenciar-usuarios btn btn-outline-dark">
+                    Gerenciar Usuários
+                </a>
+                <li class="cartao-dashboard arma">
+                    <div class="informacoes">
+                        <span>Armas</span>
+                    </div>
+                    <img src="/images/dashboard/arma.gif" alt="Arma" class="gif" />
+                </li>
+                
+                <li class="cartao-dashboard atributo">
+                    <div class="informacoes">
+                        <span>Atributos</span>
+                    </div>
+                    <img src="/images/dashboard/arma.gif" alt="Arma" class="gif" />
+                </li>
+                <li class="cartao-dashboard condicao">
+                    <div class="informacoes">
+                        <span>Condição</span>
+                    </div>
+                    <img src="/images/dashboard/arma.gif" alt="Arma" class="gif" />
+                </li>
+                <li class="cartao-dashboard equipamento">
+                    <div class="informacoes">
+                        <span>Equipamentos</span>
+                    </div>
+                    <img src="/images/dashboard/colete.gif" alt="Colete" class="gif" />
+                </li>
+                <li class="cartao-dashboard item">
+                    <div class="informacoes">
+                        <span>Itens</span>
+                    </div>
+                    <img src="/images/dashboard/barraca.gif" alt="Barraca" class="gif" />
+                </li>
+                <li class="cartao-dashboard personagem">
+                    <div class="informacoes">
+                        <span>Personagens</span>
+                    </div>
+                    <img src="/images/dashboard/personagens.gif" alt="Personagens" class="gif" />
+                </li>
+            </ul>
+        </li>
     }
 </ul>

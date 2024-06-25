@@ -18,31 +18,31 @@
             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
-                <label asp-for="Input.NomeUsuario" class="col-4 label-cadastro">NOME DE USUÁRIO</label>
-                <input asp-for="Input.NomeUsuario" class="col-7 input-cadastro" aria-required="true" placeholder="Nome de usuário" />
+                <label asp-for="Input.NomeUsuario" class="label-cadastro">NOME DE USUÁRIO</label>
+                <input asp-for="Input.NomeUsuario" class="input-cadastro" aria-required="true" placeholder="Nome de usuário" />
                 <span asp-validation-for="Input.NomeUsuario" class="text-danger alerta"></span>
                 
-                <label asp-for="Input.Email" class="col-4 label-cadastro">E-MAIL</label>
-                <input asp-for="Input.Email" class="col-7 input-cadastro" autocomplete="username" aria-required="true" placeholder="seuemail@exemplo.com" />
+                <label asp-for="Input.Email" class="label-cadastro">E-MAIL</label>
+                <input asp-for="Input.Email" class="input-cadastro" autocomplete="username" aria-required="true" placeholder="seuemail@exemplo.com" />
                 <span asp-validation-for="Input.Email" class="text-danger alerta"></span>
 
-                <label asp-for="Input.PhoneNumber" class="col-4 label-cadastro">TELEFONE</label>
-                <input asp-for="Input.PhoneNumber" class="col-7 input-cadastro" aria-required="true" placeholder="(11) 11111-1111" />
+                <label asp-for="Input.PhoneNumber" class="label-cadastro">TELEFONE</label>
+                <input asp-for="Input.PhoneNumber" class="input-cadastro" aria-required="true" placeholder="(11) 11111-1111" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger alerta"></span>
 
-                <label asp-for="Input.DataNascimento" class="col-4 label-cadastro">DATA DE NASCIMENTO</label>
-                <input asp-for="Input.DataNascimento" class="col-7 input-cadastro" aria-required="true" type="date" />
+                <label asp-for="Input.DataNascimento" class="label-cadastro">DATA DE NASCIMENTO</label>
+                <input asp-for="Input.DataNascimento" class="input-cadastro" aria-required="true" type="date" />
                 <span asp-validation-for="Input.DataNascimento" class="text-danger alerta"></span>
 
-                <label asp-for="Input.Password" class="col-4 label-cadastro">SENHA</label>
-                <input asp-for="Input.Password" class="col-7 input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                <label asp-for="Input.Password" class="label-cadastro">SENHA</label>
+                <input asp-for="Input.Password" class="input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
                 <span asp-validation-for="Input.Password" class="text-danger alerta"></span>
 
-                <label asp-for="Input.ConfirmPassword" class="col-4 label-cadastro">CONFIRMAR SENHA</label>
-                <input asp-for="Input.ConfirmPassword" class="col-7 input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                <label asp-for="Input.ConfirmPassword" class="label-cadastro">CONFIRMAR SENHA</label>
+                <input asp-for="Input.ConfirmPassword" class="input-cadastro" autocomplete="new-password" aria-required="true" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger alerta"></span>
 
-                <div class="container container-botao">
+                <div class="container-botao">
                     <button type="submit" class="col-5 botao-submit">CADASTRAR</button>
                 </div>
             </form>

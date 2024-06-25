@@ -1,3 +1,91 @@
-﻿@model List<Atributo>
+﻿@using Microsoft.AspNetCore.Identity
+@model List<Atributo>
 
-@ViewData["Title"] = "Visualizar Atributos";
+@{
+    ViewData["Title"] = "Visualizar Atributos";
+}
+
+@inject SignInManager<RPGUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Home" asp-action="Index">
+        <svg id="btn-voltar" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#008C59" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
+        </svg>
+    </a>
+    <div class="container cartao">
+        <div class="cartao-topo visualizar">
+            <h2 class="cartao-titulo">@ViewData["Title"]</h2>
+        </div>
+
+        <div id="cartao-conteudo" class="cartao-conteudo visualizar">
+            <div class="div-adicionar">
+                <a asp-area="Administrador" asp-controller="Atributo" asp-action="AdicionarOuEditar" class="btn btn-dark btn-adicionar">
+                    <svg id="icone-add" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f5f5f5" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"></path>
+                    </svg>
+                    Adicionar Arma
+                </a>
+            </div>
+
+            <div class="div-tabela">
+                <table class="tabela table-striped">
+                    <thead class="header-tabela">
+                        <tr>
+                            <th class="coluna-2">Jogador</th>
+                            <th class="coluna-1">Personagem</th>
+                            <th class="coluna-2">Corpo</th>
+                            <th class="coluna-3">Foco</th>
+                            <th class="coluna-4">Mente</th>
+                            <th class="coluna-5">Reação</th>
+                            <th class="coluna-10">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @foreach (var atributo in Model)
+                        {
+                            <tr>
+                                <td class="coluna-1">@atributo.Personagem</td>
+                                <td class="coluna-2">@atributo.Personagem</td>
+                                <td class="coluna-3">@atributo.Corpo</td>
+                                <td class="coluna-4">@atributo.Foco</td>
+                                <td class="coluna-6">@atributo.Mente</td>
+                                <td class="coluna-7">@atributo.Reacao</td>
+                                <td class="coluna-10">
+                                    <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="Atributo" asp-action="AdicionarOuEditar" asp-route-id="@atributo.Id" class="btn btn-dark mx-2" id="btn-editar">
+                                            <i class="bi bi-pencil-square"></i> Editar
+                                        </a>
+                                        <a asp-controller="Atributo" asp-action="Excluir" asp-route-id="@atributo.Id" class="btn btn-danger mx-2">
+                                            <i class="bi bi-trash-fill"></i> Excluir
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+}
+else
+{
+    if (User.IsInRole("Administrador"))
+    {
+        <script type="text/javascript">
+            window.location.href = "/Administrador/Home/Index";
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            window.location.href = "/Jogador/Home/Index";
+        </script>
+    }
+
+}

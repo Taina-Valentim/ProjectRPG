@@ -36,6 +36,9 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -65,7 +68,8 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                ModelState.AddModelError(string.Empty, "");
+                StatusMessage = "Usuário não cadastrado.";
                 return Page();
             }
 
@@ -79,10 +83,10 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 Input.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Confirme seu e-mail",
+                $"Confirme seu e-mail clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            StatusMessage = "Verifique seu e-mail para confirmar sua conta.";
             return Page();
         }
     }

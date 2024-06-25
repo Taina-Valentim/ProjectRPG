@@ -4,7 +4,7 @@ using ProjectRPG.Models;
 
 namespace ProjectRPG.DataAccess.Repository
 {
-    public class ArmaRepository : Repository<Armamento>, IArmaRepository
+    public class ArmaRepository : Repository<Arma>, IArmaRepository
     {
         private readonly RPGDbContext _db;
 
@@ -12,7 +12,7 @@ namespace ProjectRPG.DataAccess.Repository
         {
             _db = db;
         }
-        public void Alterar(Armamento arma)
+        public void Alterar(Arma arma)
         {
             _db.Armas.Update(arma);
         }

@@ -27,27 +27,27 @@
 
                     @if (Model.IsEmailConfirmed)
                     {
-                        <label asp-for="Email" class="col-4 label-cadastro"></label>
-                        <input asp-for="Email" class="col-7 input-cadastro" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
+                        <label asp-for="Email" class="label-cadastro"></label>
+                        <input asp-for="Email" class="input-cadastro" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
                         <div class="input-group-append">
                             <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
                         </div>
                     }
                     else
                     {
-                        <label asp-for="Email" class="col-3 label-cadastro"></label>
-                        <input asp-for="Email" class="col-8 input-cadastro" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
-                        <div class="container container-botao">
-                            <button id="email-verification-button" type="submit" asp-page-handler="SendVerificationEmail" class="col-5 botao-submit">Enviar e-mail de confirmação</button>
+                        <label asp-for="Email" class="label-cadastro" style="width:100px;"></label>
+                        <input asp-for="Email" class="input-cadastro" style="width:450px;" placeholder="@UserManager.GetUserAsync(User).Result.Email" disabled />
+                        <div class="container-botao">
+                            <button id="email-verification-button" type="submit" asp-page-handler="SendVerificationEmail" class="col-5 botao-submit menor">Enviar e-mail de confirmação</button>
                         </div>
                     }
 
-                    <label asp-for="Input.NewEmail" class="col-3 label-cadastro"></label>
-                    <input asp-for="Input.NewEmail" class="col-8 input-cadastro" autocomplete="email" aria-required="true" placeholder="Por favor, insira um novo e-mail." />
+                    <label asp-for="Input.NewEmail" class="label-cadastro" style="width:100px;"></label>
+                    <input asp-for="Input.NewEmail" class="input-cadastro" style="width:450px;" autocomplete="email" aria-required="true" placeholder="Por favor, insira um novo e-mail." />
                     <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
 
-                    <div class="container container-botao">
-                        <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="col-5 botao-submit">Alterar e-mail</button>
+                    <div class="container-botao">
+                        <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="col-5 botao-submit menor">Alterar e-mail</button>
                     </div>
                 </form>
             </div>

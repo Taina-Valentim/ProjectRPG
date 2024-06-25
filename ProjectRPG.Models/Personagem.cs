@@ -44,7 +44,7 @@ namespace ProjectRPG.Models
         public string? Tag { get; set; }
 
         [ValidateNever]
-		public ICollection<Armamento>? Armamentos { get; set; }
+		public ICollection<Arma>? Armamentos { get; set; }
 		[ValidateNever]
 		public ICollection<Equipamento>? Equipamentos { get; set; }
 		[ValidateNever]

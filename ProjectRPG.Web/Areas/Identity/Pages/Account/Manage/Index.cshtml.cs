@@ -106,7 +106,7 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Não foi possível carregar o usuário!\nID: '{_userManager.GetUserId(User)}'.");
             }
-
+            //ModelState.
             if (!ModelState.IsValid)
             {
                 // await LoadAsync(user);
