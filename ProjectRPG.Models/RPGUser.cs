@@ -9,5 +9,7 @@ namespace ProjectRPG.Models
         public string? NomeUsuario { get; set; }
         [Display(Name = "Data de Nascimento")]
         public DateOnly DataNascimento { get; set; }
+
+        public ICollection<Personagem>? Personagens { get; set; }
     }
 }

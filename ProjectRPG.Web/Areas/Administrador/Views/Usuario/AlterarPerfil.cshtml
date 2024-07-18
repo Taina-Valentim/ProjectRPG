@@ -1,41 +1,60 @@
-﻿@model UsuarioViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model UsuarioViewModel
 
-<div class="card shadow border-0 mt-4">
-    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h2 class="text-white py-2">Alterar Perfil de @Model.Usuario.UserName</h2>
-            </div>
+@{
+    ViewData["Title"] = "Alterar Perfil de " + Model.Usuario.NomeUsuario;
+}
+
+@inject SignInManager<RPGUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Arma" asp-action="Index">
+        <svg id="btn-voltar" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#008C59" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
+        </svg>
+    </a>
+
+    <div class="container cartao">
+        <div class="cartao-topo adicionar">
+            <h2 class="cartao-titulo">@ViewData["Title"]</h2>
         </div>
-    </div>
-    <div class="card-body p-4">
-        <form method="post">
-            <input asp-for="Usuario.Id" hidden />
-            <div class="border p-3 mt-4">
 
-                <div class="form-floating mb-3 col-md-6">
+        <div id="cartao-conteudo" class="cartao-conteudo adicionar">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <input asp-for="Usuario.Id" hidden />
+
+                <div class="container-botao" style="margin-bottom: 40px;">
                     <select asp-for="Role" asp-items="@Model.RoleList" class="form-select">
                         <option disabled selected>-Selecionar Perfil-</option>
                     </select>
                 </div>
 
-                <div class="row mt-3">
-                    <div class="col-6 col-md-3">
-                        <button type="submit" class="btn btn-primary form-control">Salvar</button>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a asp-controller="Usuario" asp-action="Index" class="btn btn-secondary border  form-control">
-                            Voltar
-                        </a>
-                    </div>
+                <div class="container-botao">
+                    <button type="submit" class="col-5 botao-submit">Salvar</button>
                 </div>
-
-
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
+}
+else
+{
+    if (User.IsInRole("Administrador"))
+    {
+        <script type="text/javascript">
+            window.location.href = "/Administrador/Home/Index";
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            window.location.href = "/Jogador/Home/Index";
+        </script>
+    }
+
+}
 
 @section Scripts{
     @{

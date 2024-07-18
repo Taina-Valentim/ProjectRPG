@@ -1,0 +1,88 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Personagem
+
+@{
+    var acao = (Model != null ? "Editar" : "Adicionar");
+    ViewData["Title"] = acao + " Personagem";
+}
+
+@inject SignInManager<RPGUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Personagem" asp-action="Index">
+        <svg id="btn-voltar" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#008C59" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
+        </svg>
+    </a>
+
+    <div class="container cartao">
+        <div class="cartao-topo adicionar">
+            <h2 class="cartao-titulo">@ViewData["Title"]</h2>
+        </div>
+
+        <div id="cartao-conteudo" class="cartao-conteudo adicionar">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <label asp-for="Nome" class="label-cadastro"></label>
+                <input asp-for="Nome" class="input-cadastro" aria-required="true" />
+                <span asp-validation-for="Nome" class="text-danger row alerta-login"></span>
+
+                <label asp-for="Especie" class="label-cadastro"></label>
+                <input asp-for="Especie" class="input-cadastro" aria-required="true" />
+                <span asp-validation-for="Especie" class="text-danger row alerta-login"></span>
+
+                <label asp-for="Aparencia" class="label-cadastro descricao"></label>
+                <div class="descricao">
+                    <textarea asp-for="Aparencia" class="input-cadastro" aria-required="true"></textarea>
+                </div>
+                <span asp-validation-for="Aparencia" class="text-danger row alerta-login"></span>
+
+                <label asp-for="PvTotal" class="label-cadastro"></label>
+                <input asp-for="PvTotal" class="input-cadastro number" aria-required="true" min="1" max="5000" />
+                <span asp-validation-for="PvTotal" class="text-danger row alerta-login"></span>
+
+                <label asp-for="PvAtual" class="label-cadastro"></label>
+                <input asp-for="PvAtual" class="input-cadastro number" aria-required="true" min="1" max="10000" />
+                <span asp-validation-for="PvAtual" class="text-danger row alerta-login"></span>
+
+                <label asp-for="Deslocamento" class="label-cadastro"></label>
+                <input asp-for="Deslocamento" class="input-cadastro number" aria-required="true" min="1" max="10000" />
+                <span asp-validation-for="Deslocamento" class="text-danger row alerta-login"></span>
+
+                <label asp-for="Evasao" class="label-cadastro"></label>
+                <input asp-for="Evasao" class="input-cadastro number" aria-required="true" min="1" max="10000" />
+                <span asp-validation-for="Evasao" class="text-danger row alerta-login"></span>
+
+                <label asp-for="Tag" class="label-cadastro"></label>
+                <input asp-for="Tag" class="input-cadastro" aria-required="true" />
+                <span asp-validation-for="Tag" class="text-danger row alerta-login"></span>
+
+                <div class="container-botao">
+                    <button type="submit" class="col-5 botao-submit">@acao</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+}
+else
+{
+    if (User.IsInRole("Administrador"))
+    {
+        <script type="text/javascript">
+            window.location.href = "/Administrador/Home/Index";
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            window.location.href = "/Jogador/Home/Index";
+        </script>
+    }
+
+}
+
+
+

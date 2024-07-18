@@ -7,9 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\images\arma\**" />
+    <Compile Remove="wwwroot\images\equipamento\**" />
+    <Compile Remove="wwwroot\images\item\**" />
+    <Compile Remove="wwwroot\images\pensonagem\**" />
     <Compile Remove="wwwroot\NovaPasta1\**" />
+    <Content Remove="wwwroot\images\arma\**" />
+    <Content Remove="wwwroot\images\equipamento\**" />
+    <Content Remove="wwwroot\images\item\**" />
+    <Content Remove="wwwroot\images\pensonagem\**" />
     <Content Remove="wwwroot\NovaPasta1\**" />
+    <EmbeddedResource Remove="wwwroot\images\arma\**" />
+    <EmbeddedResource Remove="wwwroot\images\equipamento\**" />
+    <EmbeddedResource Remove="wwwroot\images\item\**" />
+    <EmbeddedResource Remove="wwwroot\images\pensonagem\**" />
     <EmbeddedResource Remove="wwwroot\NovaPasta1\**" />
+    <None Remove="wwwroot\images\arma\**" />
+    <None Remove="wwwroot\images\equipamento\**" />
+    <None Remove="wwwroot\images\item\**" />
+    <None Remove="wwwroot\images\pensonagem\**" />
     <None Remove="wwwroot\NovaPasta1\**" />
   </ItemGroup>
 
@@ -33,13 +49,6 @@
     <ProjectReference Include="..\ProjectRPG.DataAccess\ProjectRPG.DataAccess.csproj" />
     <ProjectReference Include="..\ProjectRPG.Models\ProjectRPG.Models.csproj" />
     <ProjectReference Include="..\ProjectRPG.Utilitarios\ProjectRPG.Utilitarios.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\item\" />
-    <Folder Include="wwwroot\images\arma\" />
-    <Folder Include="wwwroot\images\equipamento\" />
-    <Folder Include="wwwroot\images\pensonagem\" />
   </ItemGroup>
 
 </Project>

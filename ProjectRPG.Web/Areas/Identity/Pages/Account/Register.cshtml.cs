@@ -105,9 +105,9 @@ namespace ProjectRPG.Web.Areas.Identity.Pages.Account
             public DateOnly DataNascimento { get; set; }
 
             
-            [Display(Name = "Número de Telefone")]
             [Phone(ErrorMessage = "Por favor, insira um telefone válido")]
             [Required(ErrorMessage = "O campo 'TELEFONE' é obrigatório")]
+            [Display(Name = "Número de Telefone")]
             public string PhoneNumber { get; set; }
         }
 

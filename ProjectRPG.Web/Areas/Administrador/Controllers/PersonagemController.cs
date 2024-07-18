@@ -22,31 +22,73 @@ namespace ProjectRPG.Web.Areas.Administrador.Controllers
             return View(lista);
         }
 
-        public IActionResult Teste()
+        public IActionResult AdicionarOuEditar(int? id)
         {
-            return View();
-        }
-
-        public IActionResult Criar()
-        {
-            return View();
+            if (id == null || id == 0)
+            {
+                //create
+                return View();
+            }
+            else
+            {
+                //update
+                Personagem personagem = _unitOfWork.Personagem.Buscar(u => u.Id == id);
+                return View(personagem);
+            }
         }
 
         [HttpPost]
-
-        public IActionResult Criar(Personagem personagem)
+        public IActionResult AdicionarOuEditar(Personagem personagem)
         {
-
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _unitOfWork.Personagem.Adicionar(personagem);
-                _unitOfWork.Salvar();
-                TempData["success"] = "Seu personagem foi criado!";
-                return RedirectToAction("Index");
+                if (personagem.Id == null || personagem.Id == 0)
+                {
+                    _unitOfWork.Personagem.Adicionar(personagem);
+                    _unitOfWork.Salvar();
+                    TempData["success"] = "Arma adicionada!";
+                }
+                else
+                {
+                    _unitOfWork.Personagem.Alterar(personagem);
+                    _unitOfWork.Salvar();
+                    TempData["success"] = "Arma editada!";
+                }
 
+                return RedirectToAction("Index");
             }
-            TempData["error"] = "Seu personagem não foi criado!";
             return View();
+        }
+
+        public IActionResult Excluir(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            Personagem? personagem = _unitOfWork.Personagem.Buscar(u => u.Id == id);
+
+            if (personagem == null)
+            {
+                return NotFound();
+            }
+            return View(personagem);
+        }
+
+
+        [HttpPost, ActionName("Excluir")]
+        public IActionResult ExcluirPOST(int? id)
+        {
+            Personagem? personagem = _unitOfWork.Personagem.Buscar(u => u.Id == id);
+            if (personagem == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.Personagem.Excluir(personagem);
+            _unitOfWork.Salvar();
+            TempData["success"] = "Arma excluída!";
+            return RedirectToAction("Index");
         }
     }
 }

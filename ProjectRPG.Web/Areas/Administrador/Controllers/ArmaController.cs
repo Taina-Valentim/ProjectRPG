@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProjectRPG.DataAccess.Repository;
 using ProjectRPG.DataAccess.Repository.IRepository;
 using ProjectRPG.Models;
 using ProjectRPG.Utilitarios;

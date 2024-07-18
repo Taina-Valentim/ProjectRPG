@@ -1,16 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model Arma
+@model AtributoViewModel
 
 @{
     var acao = (Model != null ? "Editar" : "Adicionar");
-    ViewData["Title"] = acao + " Arma";
+    ViewData["Title"] = acao + " Atributo";
 }
 
 @inject SignInManager<RPGUser> SignInManager
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <a asp-controller="Arma" asp-action="Index">
+    <a asp-controller="Atributo" asp-action="Index">
         <svg id="btn-voltar" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#008C59" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
         </svg>
@@ -25,40 +25,26 @@
             <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
-                <label asp-for="Nome" class="label-cadastro"></label>
-                <input asp-for="Nome" class="input-cadastro" aria-required="true" />
-                <span asp-validation-for="Nome" class="text-danger row alerta-login"></span>
+                <label asp-for="Atributo.Corpo" class="label-cadastro"></label>
+                <input asp-for="Atributo.Corpo" class="input-cadastro number" aria-required="true" min="1" max="20" />
+                <span asp-validation-for="Atributo.Corpo" class="text-danger row alerta-login"></span>
 
-                <label asp-for="Descricao" class="label-cadastro descricao"></label>
-                <div class="descricao">
-                    <textarea asp-for="Descricao" class="input-cadastro" aria-required="true"></textarea>
-                </div>
-                <span asp-validation-for="Descricao" class="text-danger row alerta-login"></span>
+                <label asp-for="Atributo.Foco" class="label-cadastro"></label>
+                <input asp-for="Atributo.Foco" class="input-cadastro number" aria-required="true" min="1" max="20" />
+                <span asp-validation-for="Atributo.Foco" class="text-danger row alerta-login"></span>
 
-                <label asp-for="Dano" class="label-cadastro"></label>
-                <input asp-for="Dano" class="input-cadastro number" aria-required="true" min="1" max="5000" />
-                <span asp-validation-for="Dano" class="text-danger row alerta-login"></span>
+                <label asp-for="Atributo.Mente" class="label-cadastro"></label>
+                <input asp-for="Atributo.Mente" class="input-cadastro number" aria-required="true" min="1" max="20" />
+                <span asp-validation-for="Atributo.Mente" class="text-danger row alerta-login"></span>
 
-                <label asp-for="Alcance" class="label-cadastro"></label>
-                <input asp-for="Alcance" class="input-cadastro number" aria-required="true" min="1" max="10000" />
-                <span asp-validation-for="Alcance" class="text-danger row alerta-login"></span>
+                <label asp-for="Atributo.Reacao" class="label-cadastro"></label>
+                <input asp-for="Atributo.Reacao" class="input-cadastro number" aria-required="true" min="1" max="20" />
+                <span asp-validation-for="Atributo.Reacao" class="text-danger row alerta-login"></span>
 
-                <label asp-for="UsaMunicao" class="check-municao">
-                    @Html.DisplayNameFor(m => m.UsaMunicao)
-                    <input class="form-check-input" asp-for="UsaMunicao" />
-                </label>
-
-                <label asp-for="TipoMunicao" class="label-cadastro"></label>
-                <input asp-for="TipoMunicao" class="input-cadastro" aria-required="true" />
-                <span asp-validation-for="TipoMunicao" class="text-danger row alerta-login"></span>
-
-                <label asp-for="MunicaoMaxima" class="label-cadastro"></label>
-                <input asp-for="MunicaoMaxima" class="input-cadastro number" aria-required="true" min="0" max="10000" />
-                <span asp-validation-for="MunicaoMaxima" class="text-danger row alerta-login"></span>
-
-                <label asp-for="MunicaoAtual" class="label-cadastro"></label>
-                <input asp-for="MunicaoAtual" class="input-cadastro number" aria-required="true" min="0" max="10000" />
-                <span asp-validation-for="MunicaoAtual" class="text-danger row alerta-login"></span>
+                <label asp-for="Personagem.Id" class="label-cadastro">Personagem</label>
+                <select asp-for="Personagem.Id" asp-items="Model.PersonagensSelectList">
+                    <option value="">Selecione um personagem</option>
+                </select>
 
                 <div class="container-botao">
                     <button type="submit" class="col-5 botao-submit">@acao</button>

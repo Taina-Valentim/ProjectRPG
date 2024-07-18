@@ -32,11 +32,11 @@ namespace ProjectRPG.Models
         [Display(Name = "Tipo de munição")]
         public required string TipoMunicao { get; set; }
 
-        [Range(1, int.MaxValue)]
+        [Range(0, int.MaxValue)]
         [Display(Name = "Munição máxima")]
         public int MunicaoMaxima { get; set; }
 
-        [Range(1, int.MaxValue)]
+        [Range(0, int.MaxValue)]
         [Display(Name = "Munição atual")]
         public int MunicaoAtual { get; set; }
 

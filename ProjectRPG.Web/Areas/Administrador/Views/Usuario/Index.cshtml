@@ -1,38 +1,79 @@
-﻿@model List<UsuarioViewModel>
+﻿@using Microsoft.AspNetCore.Identity
+@model List<UsuarioViewModel>
 
-<h1>Lista de Usuários</h1>
+@{
+    ViewData["Title"] = "Visualizar Usuários";
+}
+@inject SignInManager<RPGUser> SignInManager
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nome de Usuário</th>
-            <th>Email</th>
-            <th>Número de Telefone</th>
-            <th>Data de Nascimento</th>
-            <th>Perfil</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.Usuario.NomeUsuario</td>
-                <td>@user.Usuario.Email</td>
-                <td>@user.Usuario.PhoneNumber</td>
-                <td>@user.Usuario.DataNascimento</td>
-                <td>@user.Role</td>
-                <td>
-                    <div class="w-75 btn-group" role="group">
-                        <a asp-controller="Usuario" asp-action="AlterarPerfil" asp-route-id="@user.Usuario.Id" class="btn btn-primary mx-2">
-                            <i class="bi bi-pencil-square"></i> Alterar Perfil
-                        </a>
-                        <a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@user.Usuario.Id" class="btn btn-danger mx-2">
-                            <i class="bi bi-trash-fill"></i> Excluir
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Home" asp-action="Index">
+        <svg id="btn-voltar" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#008C59" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"></path>
+        </svg>
+    </a>
+    <div class="container cartao">
+        <div class="cartao-topo visualizar">
+            <h2 class="cartao-titulo">@ViewData["Title"]</h2>
+        </div>
+
+        <div id="cartao-conteudo" class="cartao-conteudo visualizar">
+
+            <div class="div-tabela">
+                <table class="tabela table-striped">
+                    <thead class="header-tabela">
+                        <tr>
+                            <th class ="coluna-1">Nome de Usuário</th>
+                            <th class="coluna-1">Email</th>
+                            <th class="coluna-1">Número de Telefone</th>
+                            <th class="coluna-1">Data de Nascimento</th>
+                            <th class="coluna-1">Perfil</th>
+                            <th class="coluna-10">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td class="coluna-1">@user.Usuario.NomeUsuario</td>
+                                <td class="coluna-1">@user.Usuario.Email</td>
+                                <td class="coluna-1">@user.Usuario.PhoneNumber</td>
+                                <td class="coluna-1">@user.Usuario.DataNascimento</td>
+                                <td class="coluna-1">@user.Role</td>
+                                <td class="coluna-1">
+                                    <div class="w-75 btn-group" role="group">
+                                        <a asp-controller="Usuario" asp-action="AlterarPerfil" asp-route-id="@user.Usuario.Id" class="btn btn-dark mx-2">
+                                            <i class="bi bi-pencil-square"></i> Alterar Perfil
+                                        </a>
+                                        <a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@user.Usuario.Id" class="btn btn-danger mx-2">
+                                            <i class="bi bi-trash-fill"></i> Excluir
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+}
+else
+{
+    if (User.IsInRole("Administrador"))
+    {
+        <script type="text/javascript">
+            window.location.href = "/Administrador/Home/Index";
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            window.location.href = "/Jogador/Home/Index";
+        </script>
+    }
+
+}

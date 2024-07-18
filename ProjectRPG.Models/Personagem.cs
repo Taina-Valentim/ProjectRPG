@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Microsoft.Extensions.Primitives;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectRPG.Models
 {
@@ -9,16 +9,13 @@ namespace ProjectRPG.Models
         [Key]
         public int Id { get; set; }
         
-        [Required]
         [MaxLength(150, ErrorMessage = "O nome deve ter entre 1 e 150 caracteres")]
         public required string Nome { get; set; }
 
-        [Required]
         [MaxLength(10)]
         [Display(Name = "Espécie")]
         public required string Especie { get; set; }
 
-        [Required]
         [MaxLength(5000)]
         [Display(Name = "Aparência")]
         public required string Aparencia { get; set; }
@@ -49,5 +46,10 @@ namespace ProjectRPG.Models
 		public ICollection<Equipamento>? Equipamentos { get; set; }
 		[ValidateNever]
 		public ICollection<Item>? Itens { get; set; }
-	}
+
+        public string? UsuarioId { get; set; }
+        [ForeignKey("UsuarioId")]
+        [ValidateNever]
+        public RPGUser? Usuario { get; set; }
+    }
 }

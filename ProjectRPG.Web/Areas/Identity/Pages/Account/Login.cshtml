@@ -31,10 +31,15 @@
                     <input class="form-check-input" asp-for="Input.RememberMe" />
                     @Html.DisplayNameFor(m => m.Input.RememberMe)
                 </label>
-                <div class="opcoes">
+                @{
+                    /*
+                    <div class="opcoes">
                     <a id="forgot-password" asp-page="./ForgotPassword">Esqueci minha senha</a>
                     <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Reenviar e-mail de confirmação</a>
-                </div>
+                    </div>
+                    */
+                }
+                
 
                 <div class="container-botao">
                     <button type="submit" class="col-5 botao-submit">LOGIN</button>
